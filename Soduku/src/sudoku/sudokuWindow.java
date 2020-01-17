@@ -5,7 +5,8 @@
  */
 package sudoku;
 
-import javafx.scene.input.MouseButton;
+import java.awt.Color;
+import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 
 /**
@@ -14,13 +15,30 @@ import javax.swing.SwingUtilities;
  */
 public class sudokuWindow extends javax.swing.JFrame {
 
+    private static JLabel cellSelected;
+    private JLabel[][] cells;
+
     /**
      * Creates new form sudokuWindow
      */
     public sudokuWindow() {
+        cellSelected = cell0_0;
         initComponents();
-    }
+        
+//        for(int i = 0; i < 9; i++)
+//        {
+//            for(int j = 0; j < 9; j++)
+//            {
+//                  cells[i][j].addMouseListener(new java.awt.event.MouseAdapter());
+//            }
+//        }
+        cells[0][0].addMouseListener(new java.awt.event.MouseAdapter() {
 
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cell0_0MouseClicked(evt);
+            }
+        });
+         }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,96 +49,178 @@ public class sudokuWindow extends javax.swing.JFrame {
     private void initComponents() {
 
         sodukuBoard = new javax.swing.JPanel();
+        cells = new JLabel[9][9];
         region0_0 = new javax.swing.JPanel();
-        jLabel55 = new javax.swing.JLabel();
-        jLabel56 = new javax.swing.JLabel();
-        jLabel57 = new javax.swing.JLabel();
-        jLabel58 = new javax.swing.JLabel();
-        jLabel59 = new javax.swing.JLabel();
-        jLabel60 = new javax.swing.JLabel();
-        jLabel61 = new javax.swing.JLabel();
-        jLabel62 = new javax.swing.JLabel();
-        jLabel63 = new javax.swing.JLabel();
+        cell0_0 = new javax.swing.JLabel();
+        cells[0][0] = cell0_0;
+        cell0_1 = new javax.swing.JLabel();
+        cells[0][1] = cell0_1;
+        cell0_2 = new javax.swing.JLabel();
+        cells[0][2] = cell0_2;
+        cell1_0 = new javax.swing.JLabel();
+        cells[1][0] = cell1_0;
+        cell1_1 = new javax.swing.JLabel();
+        cells[1][1] = cell1_1;
+        cell1_2 = new javax.swing.JLabel();
+        cells[1][2] = cell1_2;
+        cell2_0 = new javax.swing.JLabel();
+        cells[2][0] = cell2_0;
+        cell2_1 = new javax.swing.JLabel();
+        cells[2][1] = cell2_1;
+        cell2_2 = new javax.swing.JLabel();
+        cells[2][2] = cell2_2;
         region0_1 = new javax.swing.JPanel();
-        jLabel82 = new javax.swing.JLabel();
-        jLabel83 = new javax.swing.JLabel();
-        jLabel84 = new javax.swing.JLabel();
-        jLabel85 = new javax.swing.JLabel();
-        jLabel86 = new javax.swing.JLabel();
-        jLabel87 = new javax.swing.JLabel();
-        jLabel88 = new javax.swing.JLabel();
-        jLabel89 = new javax.swing.JLabel();
-        jLabel90 = new javax.swing.JLabel();
+        cell0_3 = new javax.swing.JLabel();
+        cells[0][3] = cell0_3;
+        cell0_4 = new javax.swing.JLabel();
+        cells[0][4] = cell0_4;
+        cell0_5 = new javax.swing.JLabel();
+        cells[0][5] = cell0_5;
+        cell1_3 = new javax.swing.JLabel();
+        cells[1][3] = cell1_3;
+        cell1_4 = new javax.swing.JLabel();
+        cells[1][4] = cell1_4;
+        cell1_5 = new javax.swing.JLabel();
+        cells[1][5] = cell1_5;
+        cell2_3 = new javax.swing.JLabel();
+        cells[2][3] = cell2_3;
+        cell2_4 = new javax.swing.JLabel();
+        cells[2][4] = cell2_4;
+        cell2_5 = new javax.swing.JLabel();
+        cells[2][5] = cell2_5;
         region0_2 = new javax.swing.JPanel();
-        jLabel53 = new javax.swing.JLabel();
-        jLabel52 = new javax.swing.JLabel();
-        jLabel54 = new javax.swing.JLabel();
-        jLabel46 = new javax.swing.JLabel();
-        jLabel51 = new javax.swing.JLabel();
-        jLabel48 = new javax.swing.JLabel();
-        jLabel50 = new javax.swing.JLabel();
-        jLabel47 = new javax.swing.JLabel();
-        jLabel49 = new javax.swing.JLabel();
+        cell0_6 = new javax.swing.JLabel();
+        cells[0][6] = cell0_6;
+        cell0_7 = new javax.swing.JLabel();
+        cells[0][7] = cell0_7;
+        cell0_8 = new javax.swing.JLabel();
+        cells[0][8] = cell0_8;
+        cell1_6 = new javax.swing.JLabel();
+        cells[1][6] = cell1_6;
+        cell1_7 = new javax.swing.JLabel();
+        cells[1][7] = cell1_7;
+        cell1_8 = new javax.swing.JLabel();
+        cells[1][8] = cell1_8;
+        cell2_6 = new javax.swing.JLabel();
+        cells[2][6] = cell2_6;
+        cell2_7 = new javax.swing.JLabel();
+        cells[2][7] = cell2_7;
+        cell2_8 = new javax.swing.JLabel();
+        cells[2][8] = cell2_8;
         region1_0 = new javax.swing.JPanel();
-        jLabel64 = new javax.swing.JLabel();
-        jLabel65 = new javax.swing.JLabel();
-        jLabel66 = new javax.swing.JLabel();
-        jLabel67 = new javax.swing.JLabel();
-        jLabel68 = new javax.swing.JLabel();
-        jLabel69 = new javax.swing.JLabel();
-        jLabel70 = new javax.swing.JLabel();
-        jLabel71 = new javax.swing.JLabel();
-        jLabel72 = new javax.swing.JLabel();
+        cell3_0 = new javax.swing.JLabel();
+        cells[3][0] = cell3_0;
+        cell3_1 = new javax.swing.JLabel();
+        cells[3][1] = cell3_1;
+        cell3_2 = new javax.swing.JLabel();
+        cells[3][2] = cell3_2;
+        cell4_0 = new javax.swing.JLabel();
+        cells[4][0] = cell4_0;
+        cell4_1 = new javax.swing.JLabel();
+        cells[4][1] = cell4_1;
+        cell4_2 = new javax.swing.JLabel();
+        cells[4][2] = cell4_2;
+        cell5_0 = new javax.swing.JLabel();
+        cells[5][0] = cell5_0;
+        cell5_1 = new javax.swing.JLabel();
+        cells[5][1] = cell5_1;
+        cell5_2 = new javax.swing.JLabel();
+        cells[5][2] = cell5_2;
         region1_1 = new javax.swing.JPanel();
-        jLabel73 = new javax.swing.JLabel();
-        jLabel74 = new javax.swing.JLabel();
-        jLabel75 = new javax.swing.JLabel();
-        jLabel76 = new javax.swing.JLabel();
-        jLabel77 = new javax.swing.JLabel();
-        jLabel78 = new javax.swing.JLabel();
-        jLabel79 = new javax.swing.JLabel();
-        jLabel80 = new javax.swing.JLabel();
-        jLabel81 = new javax.swing.JLabel();
+        cell3_3 = new javax.swing.JLabel();
+        cells[3][3] = cell3_3;
+        cell3_4 = new javax.swing.JLabel();
+        cells[3][4] = cell3_4;
+        cell3_5 = new javax.swing.JLabel();
+        cells[3][5] = cell3_5;
+        cell4_3 = new javax.swing.JLabel();
+        cells[4][3] = cell4_3;
+        cell4_4 = new javax.swing.JLabel();
+        cells[4][4] = cell4_4;
+        cell4_5 = new javax.swing.JLabel();
+        cells[4][5] = cell4_5;
+        cell5_3 = new javax.swing.JLabel();
+        cells[5][3] = cell5_3;
+        cell5_4 = new javax.swing.JLabel();
+        cells[5][4] = cell5_4;
+        cell5_5 = new javax.swing.JLabel();
+        cells[5][5] = cell5_5;
         region1_2 = new javax.swing.JPanel();
-        jLabel91 = new javax.swing.JLabel();
-        jLabel92 = new javax.swing.JLabel();
-        jLabel93 = new javax.swing.JLabel();
-        jLabel94 = new javax.swing.JLabel();
-        jLabel95 = new javax.swing.JLabel();
-        jLabel96 = new javax.swing.JLabel();
-        jLabel97 = new javax.swing.JLabel();
-        jLabel98 = new javax.swing.JLabel();
-        jLabel99 = new javax.swing.JLabel();
+        cell3_6 = new javax.swing.JLabel();
+        cells[3][6] = cell3_6;
+        cell3_7 = new javax.swing.JLabel();
+        cells[3][7] = cell3_7;
+        cell3_8 = new javax.swing.JLabel();
+        cells[3][8] = cell3_8;
+        cell4_6 = new javax.swing.JLabel();
+        cells[4][6] = cell4_6;
+        cell4_7 = new javax.swing.JLabel();
+        cells[4][7] = cell4_7;
+        cell4_8 = new javax.swing.JLabel();
+        cells[4][8] = cell4_8;
+        cell5_6 = new javax.swing.JLabel();
+        cells[5][6] = cell5_6;
+        cell5_7 = new javax.swing.JLabel();
+        cells[5][7] = cell5_7;
+        cell5_8 = new javax.swing.JLabel();
+        cells[5][8] = cell5_8;
         region2_0 = new javax.swing.JPanel();
-        jLabel100 = new javax.swing.JLabel();
-        jLabel101 = new javax.swing.JLabel();
-        jLabel102 = new javax.swing.JLabel();
-        jLabel103 = new javax.swing.JLabel();
-        jLabel104 = new javax.swing.JLabel();
-        jLabel105 = new javax.swing.JLabel();
-        jLabel106 = new javax.swing.JLabel();
-        jLabel107 = new javax.swing.JLabel();
-        jLabel108 = new javax.swing.JLabel();
-        region2_2 = new javax.swing.JPanel();
-        jLabel109 = new javax.swing.JLabel();
-        jLabel110 = new javax.swing.JLabel();
-        jLabel111 = new javax.swing.JLabel();
-        jLabel112 = new javax.swing.JLabel();
-        jLabel113 = new javax.swing.JLabel();
-        jLabel114 = new javax.swing.JLabel();
-        jLabel115 = new javax.swing.JLabel();
-        jLabel116 = new javax.swing.JLabel();
-        jLabel117 = new javax.swing.JLabel();
+        cell6_0 = new javax.swing.JLabel();
+        cells[6][0] = cell6_0;
+        cell6_1 = new javax.swing.JLabel();
+        cells[6][1] = cell6_1;
+        cell6_2 = new javax.swing.JLabel();
+        cells[6][2] = cell6_2;
+        cell7_0 = new javax.swing.JLabel();
+        cells[7][0] = cell7_0;
+        cell7_1 = new javax.swing.JLabel();
+        cells[7][1] = cell7_1;
+        cell7_2 = new javax.swing.JLabel();
+        cells[7][2] = cell7_2;
+        cell8_0 = new javax.swing.JLabel();
+        cells[8][0] = cell8_0;
+        cell8_1 = new javax.swing.JLabel();
+        cells[8][1] = cell8_1;
+        cell8_2 = new javax.swing.JLabel();
+        cells[8][2] = cell8_2;
         region2_1 = new javax.swing.JPanel();
-        jLabel118 = new javax.swing.JLabel();
-        jLabel119 = new javax.swing.JLabel();
-        jLabel120 = new javax.swing.JLabel();
-        jLabel121 = new javax.swing.JLabel();
-        jLabel122 = new javax.swing.JLabel();
-        jLabel123 = new javax.swing.JLabel();
-        jLabel124 = new javax.swing.JLabel();
-        jLabel125 = new javax.swing.JLabel();
-        jLabel126 = new javax.swing.JLabel();
+        cell6_3 = new javax.swing.JLabel();
+        cells[6][3] = cell6_3;
+        cell6_4 = new javax.swing.JLabel();
+        cells[6][4] = cell6_4;
+        cell6_5 = new javax.swing.JLabel();
+        cells[6][5] = cell6_5;
+        cell7_3 = new javax.swing.JLabel();
+        cells[7][3] = cell7_3;
+        cell7_4 = new javax.swing.JLabel();
+        cells[7][4] = cell7_4;
+        cell7_5 = new javax.swing.JLabel();
+        cells[7][5] = cell7_5;
+        cell8_3 = new javax.swing.JLabel();
+        cells[8][3] = cell8_3;
+        cell8_4 = new javax.swing.JLabel();
+        cells[8][4] = cell8_4;
+        cell8_5 = new javax.swing.JLabel();
+        cells[8][5] = cell8_5;
+        region2_2 = new javax.swing.JPanel();
+        cell6_6 = new javax.swing.JLabel();
+        cells[6][6] = cell6_6;
+        cell6_7 = new javax.swing.JLabel();
+        cells[6][7] = cell6_7;
+        cell6_8 = new javax.swing.JLabel();
+        cells[6][8] = cell6_8;
+        cell7_6 = new javax.swing.JLabel();
+        cells[7][6] = cell7_6;
+        cell7_7 = new javax.swing.JLabel();
+        cells[7][7] = cell7_7;
+        cell7_8 = new javax.swing.JLabel();
+        cells[7][8] = cell7_8;
+        cell8_6 = new javax.swing.JLabel();
+        cells[8][6] = cell8_6;
+        cell8_7 = new javax.swing.JLabel();
+        cells[8][7] = cell8_7;
+        cell8_8 = new javax.swing.JLabel();
+        cells[8][8] = cell8_8;
         timer = new javax.swing.JPanel();
         timerStart = new javax.swing.JButton();
         timerReset = new javax.swing.JButton();
@@ -135,74 +235,83 @@ public class sudokuWindow extends javax.swing.JFrame {
 
         region0_0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel55.setBackground(new java.awt.Color(204, 255, 51));
-        jLabel55.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel55.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel55.setText(" ");
-        jLabel55.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel55.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel55.setPreferredSize(new java.awt.Dimension(50, 50));
-        jLabel55.addMouseListener(new java.awt.event.MouseAdapter() {
+        cell0_0.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell0_0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell0_0.setText(" ");
+        cell0_0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell0_0.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        cell0_0.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell0_0.setOpaque(true);
+        cell0_0.setPreferredSize(new java.awt.Dimension(50, 50));
+
+        cell0_1.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell0_1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell0_1.setText(" ");
+        cell0_1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell0_1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell0_1.setOpaque(true);
+        cell0_1.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell0_1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel55MouseClicked(evt);
+                cell0_1MouseClicked(evt);
             }
         });
 
-        jLabel56.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel56.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel56.setText(" ");
-        jLabel56.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel56.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel56.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell0_2.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell0_2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell0_2.setText(" ");
+        cell0_2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell0_2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell0_2.setOpaque(true);
+        cell0_2.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel57.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel57.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel57.setText(" ");
-        jLabel57.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel57.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel57.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell1_0.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell1_0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell1_0.setText(" ");
+        cell1_0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell1_0.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell1_0.setOpaque(true);
+        cell1_0.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel58.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel58.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel58.setText(" ");
-        jLabel58.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel58.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel58.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell1_1.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell1_1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell1_1.setText(" ");
+        cell1_1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell1_1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell1_1.setOpaque(true);
+        cell1_1.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel59.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel59.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel59.setText(" ");
-        jLabel59.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel59.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel59.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell1_2.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell1_2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell1_2.setText(" ");
+        cell1_2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell1_2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell1_2.setOpaque(true);
+        cell1_2.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel60.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel60.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel60.setText(" ");
-        jLabel60.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel60.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel60.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell2_0.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell2_0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell2_0.setText(" ");
+        cell2_0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell2_0.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell2_0.setOpaque(true);
+        cell2_0.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel61.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel61.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel61.setText(" ");
-        jLabel61.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel61.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel61.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell2_1.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell2_1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell2_1.setText(" ");
+        cell2_1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell2_1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell2_1.setOpaque(true);
+        cell2_1.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel62.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel62.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel62.setText(" ");
-        jLabel62.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel62.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel62.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        jLabel63.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel63.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel63.setText(" ");
-        jLabel63.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel63.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel63.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell2_2.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell2_2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell2_2.setText(" ");
+        cell2_2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell2_2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell2_2.setOpaque(true);
+        cell2_2.setPreferredSize(new java.awt.Dimension(50, 50));
 
         javax.swing.GroupLayout region0_0Layout = new javax.swing.GroupLayout(region0_0);
         region0_0.setLayout(region0_0Layout);
@@ -212,108 +321,117 @@ public class sudokuWindow extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(region0_0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(region0_0Layout.createSequentialGroup()
-                        .addComponent(jLabel60, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cell1_0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel63, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cell1_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel61, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cell1_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(region0_0Layout.createSequentialGroup()
-                        .addComponent(jLabel55, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cell0_0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel56, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cell0_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel59, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cell0_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(region0_0Layout.createSequentialGroup()
-                        .addComponent(jLabel57, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cell2_0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel58, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cell2_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel62, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(cell2_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         region0_0Layout.setVerticalGroup(
             region0_0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(region0_0Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(region0_0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel55, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel56, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel59, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cell0_0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell0_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell0_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, 0)
                 .addGroup(region0_0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel60, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel63, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel61, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cell1_0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell1_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell1_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, 0)
                 .addGroup(region0_0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel57, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel58, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel62, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(cell2_0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell2_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell2_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         region0_1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel82.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel82.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel82.setText(" ");
-        jLabel82.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel82.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel82.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell0_3.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell0_3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell0_3.setText(" ");
+        cell0_3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell0_3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell0_3.setOpaque(true);
+        cell0_3.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel83.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel83.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel83.setText(" ");
-        jLabel83.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel83.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel83.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell0_4.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell0_4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell0_4.setText(" ");
+        cell0_4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell0_4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell0_4.setOpaque(true);
+        cell0_4.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel84.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel84.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel84.setText(" ");
-        jLabel84.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel84.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel84.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell0_5.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell0_5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell0_5.setText(" ");
+        cell0_5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell0_5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell0_5.setOpaque(true);
+        cell0_5.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel85.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel85.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel85.setText(" ");
-        jLabel85.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel85.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel85.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell1_3.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell1_3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell1_3.setText(" ");
+        cell1_3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell1_3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell1_3.setOpaque(true);
+        cell1_3.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel86.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel86.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel86.setText(" ");
-        jLabel86.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel86.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel86.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell1_4.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell1_4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell1_4.setText(" ");
+        cell1_4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell1_4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell1_4.setOpaque(true);
+        cell1_4.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel87.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel87.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel87.setText(" ");
-        jLabel87.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel87.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel87.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell1_5.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell1_5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell1_5.setText(" ");
+        cell1_5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell1_5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell1_5.setOpaque(true);
+        cell1_5.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel88.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel88.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel88.setText(" ");
-        jLabel88.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel88.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel88.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell2_3.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell2_3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell2_3.setText(" ");
+        cell2_3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell2_3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell2_3.setOpaque(true);
+        cell2_3.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel89.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel89.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel89.setText(" ");
-        jLabel89.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel89.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel89.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell2_4.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell2_4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell2_4.setText(" ");
+        cell2_4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell2_4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell2_4.setOpaque(true);
+        cell2_4.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel90.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel90.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel90.setText(" ");
-        jLabel90.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel90.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel90.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell2_5.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell2_5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell2_5.setText(" ");
+        cell2_5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell2_5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell2_5.setOpaque(true);
+        cell2_5.setPreferredSize(new java.awt.Dimension(50, 50));
 
         javax.swing.GroupLayout region0_1Layout = new javax.swing.GroupLayout(region0_1);
         region0_1.setLayout(region0_1Layout);
@@ -323,108 +441,117 @@ public class sudokuWindow extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(region0_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(region0_1Layout.createSequentialGroup()
-                        .addComponent(jLabel87, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cell1_3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel90, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cell1_4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel88, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cell1_5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(region0_1Layout.createSequentialGroup()
-                        .addComponent(jLabel82, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cell0_3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel83, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cell0_4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel86, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cell0_5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(region0_1Layout.createSequentialGroup()
-                        .addComponent(jLabel84, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cell2_3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel85, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cell2_4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel89, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(cell2_5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         region0_1Layout.setVerticalGroup(
             region0_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(region0_1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(region0_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel82, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel83, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel86, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cell0_3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell0_4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell0_5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, 0)
                 .addGroup(region0_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel87, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel90, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel88, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cell1_3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell1_4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell1_5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, 0)
                 .addGroup(region0_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel84, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel85, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel89, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(cell2_3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell2_4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell2_5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         region0_2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel53.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel53.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel53.setText(" ");
-        jLabel53.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel53.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel53.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell0_6.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell0_6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell0_6.setText(" ");
+        cell0_6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell0_6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell0_6.setOpaque(true);
+        cell0_6.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel52.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel52.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel52.setText(" ");
-        jLabel52.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel52.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel52.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell0_7.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell0_7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell0_7.setText(" ");
+        cell0_7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell0_7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell0_7.setOpaque(true);
+        cell0_7.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel54.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel54.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel54.setText(" ");
-        jLabel54.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel54.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel54.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell0_8.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell0_8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell0_8.setText(" ");
+        cell0_8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell0_8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell0_8.setOpaque(true);
+        cell0_8.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel46.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel46.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel46.setText(" ");
-        jLabel46.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel46.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel46.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell1_6.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell1_6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell1_6.setText(" ");
+        cell1_6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell1_6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell1_6.setOpaque(true);
+        cell1_6.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel51.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel51.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel51.setText(" ");
-        jLabel51.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel51.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel51.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell1_7.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell1_7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell1_7.setText(" ");
+        cell1_7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell1_7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell1_7.setOpaque(true);
+        cell1_7.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel48.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel48.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel48.setText(" ");
-        jLabel48.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel48.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel48.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell1_8.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell1_8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell1_8.setText(" ");
+        cell1_8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell1_8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell1_8.setOpaque(true);
+        cell1_8.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel50.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel50.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel50.setText(" ");
-        jLabel50.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel50.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel50.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell2_6.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell2_6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell2_6.setText(" ");
+        cell2_6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell2_6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell2_6.setOpaque(true);
+        cell2_6.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel47.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel47.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel47.setText(" ");
-        jLabel47.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel47.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel47.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell2_7.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell2_7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell2_7.setText(" ");
+        cell2_7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell2_7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell2_7.setOpaque(true);
+        cell2_7.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel49.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel49.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel49.setText(" ");
-        jLabel49.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel49.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel49.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell2_8.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell2_8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell2_8.setText(" ");
+        cell2_8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell2_8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell2_8.setOpaque(true);
+        cell2_8.setPreferredSize(new java.awt.Dimension(50, 50));
 
         javax.swing.GroupLayout region0_2Layout = new javax.swing.GroupLayout(region0_2);
         region0_2.setLayout(region0_2Layout);
@@ -434,108 +561,117 @@ public class sudokuWindow extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(region0_2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(region0_2Layout.createSequentialGroup()
-                        .addComponent(jLabel48, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cell1_6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel49, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cell1_7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel50, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cell1_8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(region0_2Layout.createSequentialGroup()
-                        .addComponent(jLabel53, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cell0_6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel52, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cell0_7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel51, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cell0_8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(region0_2Layout.createSequentialGroup()
-                        .addComponent(jLabel54, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cell2_6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel46, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cell2_7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel47, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(cell2_8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         region0_2Layout.setVerticalGroup(
             region0_2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(region0_2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(region0_2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel53, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel52, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel51, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cell0_6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell0_7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell0_8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, 0)
                 .addGroup(region0_2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel48, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel49, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel50, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cell1_6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell1_7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell1_8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, 0)
                 .addGroup(region0_2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel54, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel46, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel47, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(cell2_6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell2_7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell2_8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         region1_0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel64.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel64.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel64.setText(" ");
-        jLabel64.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel64.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel64.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell3_0.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell3_0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell3_0.setText(" ");
+        cell3_0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell3_0.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell3_0.setOpaque(true);
+        cell3_0.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel65.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel65.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel65.setText(" ");
-        jLabel65.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel65.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel65.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell3_1.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell3_1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell3_1.setText(" ");
+        cell3_1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell3_1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell3_1.setOpaque(true);
+        cell3_1.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel66.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel66.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel66.setText(" ");
-        jLabel66.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel66.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel66.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell3_2.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell3_2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell3_2.setText(" ");
+        cell3_2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell3_2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell3_2.setOpaque(true);
+        cell3_2.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel67.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel67.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel67.setText(" ");
-        jLabel67.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel67.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel67.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell4_0.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell4_0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell4_0.setText(" ");
+        cell4_0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell4_0.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell4_0.setOpaque(true);
+        cell4_0.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel68.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel68.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel68.setText(" ");
-        jLabel68.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel68.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel68.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell4_1.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell4_1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell4_1.setText(" ");
+        cell4_1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell4_1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell4_1.setOpaque(true);
+        cell4_1.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel69.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel69.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel69.setText(" ");
-        jLabel69.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel69.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel69.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell4_2.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell4_2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell4_2.setText(" ");
+        cell4_2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell4_2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell4_2.setOpaque(true);
+        cell4_2.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel70.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel70.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel70.setText(" ");
-        jLabel70.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel70.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel70.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell5_0.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell5_0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell5_0.setText(" ");
+        cell5_0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell5_0.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell5_0.setOpaque(true);
+        cell5_0.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel71.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel71.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel71.setText(" ");
-        jLabel71.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel71.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel71.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell5_1.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell5_1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell5_1.setText(" ");
+        cell5_1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell5_1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell5_1.setOpaque(true);
+        cell5_1.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel72.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel72.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel72.setText(" ");
-        jLabel72.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel72.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel72.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell5_2.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell5_2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell5_2.setText(" ");
+        cell5_2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell5_2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell5_2.setOpaque(true);
+        cell5_2.setPreferredSize(new java.awt.Dimension(50, 50));
 
         javax.swing.GroupLayout region1_0Layout = new javax.swing.GroupLayout(region1_0);
         region1_0.setLayout(region1_0Layout);
@@ -545,23 +681,23 @@ public class sudokuWindow extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addGroup(region1_0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(region1_0Layout.createSequentialGroup()
-                        .addComponent(jLabel69, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cell4_0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel72, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cell4_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel70, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cell4_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(region1_0Layout.createSequentialGroup()
-                        .addComponent(jLabel64, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cell3_0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel65, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cell3_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel68, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cell3_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(region1_0Layout.createSequentialGroup()
-                        .addComponent(jLabel66, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cell5_0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel67, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cell5_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel71, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cell5_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         region1_0Layout.setVerticalGroup(
@@ -569,86 +705,95 @@ public class sudokuWindow extends javax.swing.JFrame {
             .addGroup(region1_0Layout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addGroup(region1_0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel64, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel65, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel68, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cell3_0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell3_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell3_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, 0)
                 .addGroup(region1_0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel69, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel72, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel70, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cell4_0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell4_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell4_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, 0)
                 .addGroup(region1_0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel66, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel67, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel71, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cell5_0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell5_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell5_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
         region1_1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel73.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel73.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel73.setText(" ");
-        jLabel73.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel73.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel73.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell3_3.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell3_3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell3_3.setText(" ");
+        cell3_3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell3_3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell3_3.setOpaque(true);
+        cell3_3.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel74.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel74.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel74.setText(" ");
-        jLabel74.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel74.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel74.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell3_4.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell3_4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell3_4.setText(" ");
+        cell3_4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell3_4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell3_4.setOpaque(true);
+        cell3_4.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel75.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel75.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel75.setText(" ");
-        jLabel75.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel75.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel75.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell3_5.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell3_5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell3_5.setText(" ");
+        cell3_5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell3_5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell3_5.setOpaque(true);
+        cell3_5.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel76.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel76.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel76.setText(" ");
-        jLabel76.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel76.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel76.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell4_3.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell4_3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell4_3.setText(" ");
+        cell4_3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell4_3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell4_3.setOpaque(true);
+        cell4_3.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel77.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel77.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel77.setText(" ");
-        jLabel77.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel77.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel77.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell4_4.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell4_4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell4_4.setText(" ");
+        cell4_4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell4_4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell4_4.setOpaque(true);
+        cell4_4.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel78.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel78.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel78.setText(" ");
-        jLabel78.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel78.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel78.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell4_5.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell4_5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell4_5.setText(" ");
+        cell4_5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell4_5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell4_5.setOpaque(true);
+        cell4_5.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel79.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel79.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel79.setText(" ");
-        jLabel79.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel79.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel79.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell5_3.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell5_3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell5_3.setText(" ");
+        cell5_3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell5_3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell5_3.setOpaque(true);
+        cell5_3.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel80.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel80.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel80.setText(" ");
-        jLabel80.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel80.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel80.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell5_4.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell5_4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell5_4.setText(" ");
+        cell5_4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell5_4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell5_4.setOpaque(true);
+        cell5_4.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel81.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel81.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel81.setText(" ");
-        jLabel81.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel81.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel81.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell5_5.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell5_5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell5_5.setText(" ");
+        cell5_5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell5_5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell5_5.setOpaque(true);
+        cell5_5.setPreferredSize(new java.awt.Dimension(50, 50));
 
         javax.swing.GroupLayout region1_1Layout = new javax.swing.GroupLayout(region1_1);
         region1_1.setLayout(region1_1Layout);
@@ -658,108 +803,117 @@ public class sudokuWindow extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(region1_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(region1_1Layout.createSequentialGroup()
-                        .addComponent(jLabel78, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cell4_3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel81, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cell4_4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel79, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cell4_5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(region1_1Layout.createSequentialGroup()
-                        .addComponent(jLabel73, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cell3_3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel74, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cell3_4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel77, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cell3_5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(region1_1Layout.createSequentialGroup()
-                        .addComponent(jLabel75, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cell5_3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel76, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cell5_4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel80, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(cell5_5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         region1_1Layout.setVerticalGroup(
             region1_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(region1_1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(region1_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel73, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel74, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel77, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cell3_3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell3_4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell3_5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, 0)
                 .addGroup(region1_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel78, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel81, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel79, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cell4_3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell4_4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell4_5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, 0)
                 .addGroup(region1_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel75, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel76, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel80, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(cell5_3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell5_4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell5_5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         region1_2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel91.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel91.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel91.setText(" ");
-        jLabel91.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel91.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel91.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell3_6.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell3_6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell3_6.setText(" ");
+        cell3_6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell3_6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell3_6.setOpaque(true);
+        cell3_6.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel92.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel92.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel92.setText(" ");
-        jLabel92.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel92.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel92.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell3_7.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell3_7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell3_7.setText(" ");
+        cell3_7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell3_7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell3_7.setOpaque(true);
+        cell3_7.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel93.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel93.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel93.setText(" ");
-        jLabel93.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel93.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel93.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell3_8.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell3_8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell3_8.setText(" ");
+        cell3_8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell3_8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell3_8.setOpaque(true);
+        cell3_8.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel94.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel94.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel94.setText(" ");
-        jLabel94.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel94.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel94.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell4_6.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell4_6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell4_6.setText(" ");
+        cell4_6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell4_6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell4_6.setOpaque(true);
+        cell4_6.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel95.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel95.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel95.setText(" ");
-        jLabel95.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel95.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel95.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell4_7.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell4_7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell4_7.setText(" ");
+        cell4_7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell4_7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell4_7.setOpaque(true);
+        cell4_7.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel96.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel96.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel96.setText(" ");
-        jLabel96.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel96.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel96.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell4_8.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell4_8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell4_8.setText(" ");
+        cell4_8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell4_8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell4_8.setOpaque(true);
+        cell4_8.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel97.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel97.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel97.setText(" ");
-        jLabel97.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel97.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel97.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell5_6.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell5_6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell5_6.setText(" ");
+        cell5_6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell5_6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell5_6.setOpaque(true);
+        cell5_6.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel98.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel98.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel98.setText(" ");
-        jLabel98.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel98.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel98.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell5_7.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell5_7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell5_7.setText(" ");
+        cell5_7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell5_7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell5_7.setOpaque(true);
+        cell5_7.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel99.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel99.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel99.setText(" ");
-        jLabel99.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel99.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel99.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell5_8.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell5_8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell5_8.setText(" ");
+        cell5_8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell5_8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell5_8.setOpaque(true);
+        cell5_8.setPreferredSize(new java.awt.Dimension(50, 50));
 
         javax.swing.GroupLayout region1_2Layout = new javax.swing.GroupLayout(region1_2);
         region1_2.setLayout(region1_2Layout);
@@ -769,107 +923,116 @@ public class sudokuWindow extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(region1_2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(region1_2Layout.createSequentialGroup()
-                        .addComponent(jLabel96, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cell4_6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel99, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cell4_7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel97, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cell4_8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(region1_2Layout.createSequentialGroup()
-                        .addComponent(jLabel91, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cell3_6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel92, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cell3_7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel95, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cell3_8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(region1_2Layout.createSequentialGroup()
-                        .addComponent(jLabel93, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cell5_6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel94, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cell5_7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel98, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(cell5_8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         region1_2Layout.setVerticalGroup(
             region1_2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(region1_2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(region1_2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel91, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel92, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel95, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cell3_6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell3_7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell3_8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, 0)
                 .addGroup(region1_2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel96, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel99, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel97, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cell4_6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell4_7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell4_8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, 0)
                 .addGroup(region1_2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel93, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel94, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel98, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(cell5_6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell5_7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell5_8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         region2_0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel100.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel100.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel100.setText(" ");
-        jLabel100.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel100.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel100.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell6_0.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell6_0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell6_0.setText(" ");
+        cell6_0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell6_0.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell6_0.setOpaque(true);
+        cell6_0.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel101.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel101.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel101.setText(" ");
-        jLabel101.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel101.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel101.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell6_1.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell6_1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell6_1.setText(" ");
+        cell6_1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell6_1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell6_1.setOpaque(true);
+        cell6_1.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel102.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel102.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel102.setText(" ");
-        jLabel102.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel102.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel102.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell6_2.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell6_2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell6_2.setText(" ");
+        cell6_2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell6_2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell6_2.setOpaque(true);
+        cell6_2.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel103.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel103.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel103.setText(" ");
-        jLabel103.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel103.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel103.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell7_0.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell7_0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell7_0.setText(" ");
+        cell7_0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell7_0.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell7_0.setOpaque(true);
+        cell7_0.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel104.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel104.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel104.setText(" ");
-        jLabel104.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel104.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel104.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell7_1.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell7_1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell7_1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell7_1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell7_1.setOpaque(true);
+        cell7_1.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel105.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel105.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel105.setText(" ");
-        jLabel105.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel105.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel105.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell7_2.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell7_2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell7_2.setText(" ");
+        cell7_2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell7_2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell7_2.setOpaque(true);
+        cell7_2.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel106.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel106.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel106.setText(" ");
-        jLabel106.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel106.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel106.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell8_0.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell8_0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell8_0.setText(" ");
+        cell8_0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell8_0.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell8_0.setOpaque(true);
+        cell8_0.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel107.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel107.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel107.setText(" ");
-        jLabel107.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel107.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel107.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell8_1.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell8_1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell8_1.setText(" ");
+        cell8_1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell8_1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell8_1.setOpaque(true);
+        cell8_1.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel108.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel108.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel108.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel108.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel108.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell8_2.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell8_2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell8_2.setText(" ");
+        cell8_2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell8_2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell8_2.setOpaque(true);
+        cell8_2.setPreferredSize(new java.awt.Dimension(50, 50));
 
         javax.swing.GroupLayout region2_0Layout = new javax.swing.GroupLayout(region2_0);
         region2_0.setLayout(region2_0Layout);
@@ -879,23 +1042,23 @@ public class sudokuWindow extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addGroup(region2_0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(region2_0Layout.createSequentialGroup()
-                        .addComponent(jLabel105, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cell7_0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel108, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cell7_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel106, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cell7_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(region2_0Layout.createSequentialGroup()
-                        .addComponent(jLabel100, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cell6_0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel101, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cell6_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel104, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cell6_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(region2_0Layout.createSequentialGroup()
-                        .addComponent(jLabel102, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cell8_0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel103, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cell8_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel107, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cell8_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         region2_0Layout.setVerticalGroup(
@@ -903,197 +1066,95 @@ public class sudokuWindow extends javax.swing.JFrame {
             .addGroup(region2_0Layout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addGroup(region2_0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel100, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel101, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel104, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cell6_0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell6_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell6_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, 0)
                 .addGroup(region2_0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel105, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel108, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel106, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cell7_0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell7_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell7_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, 0)
                 .addGroup(region2_0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel102, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel103, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel107, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cell8_0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell8_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell8_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
-        );
-
-        region2_2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        jLabel109.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel109.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel109.setText(" ");
-        jLabel109.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel109.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel109.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        jLabel110.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel110.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel110.setText(" ");
-        jLabel110.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel110.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel110.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        jLabel111.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel111.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel111.setText(" ");
-        jLabel111.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel111.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel111.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        jLabel112.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel112.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel112.setText(" ");
-        jLabel112.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel112.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel112.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        jLabel113.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel113.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel113.setText(" ");
-        jLabel113.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel113.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel113.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        jLabel114.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel114.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel114.setText(" ");
-        jLabel114.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel114.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel114.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        jLabel115.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel115.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel115.setText(" ");
-        jLabel115.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel115.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel115.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        jLabel116.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel116.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel116.setText(" ");
-        jLabel116.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel116.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel116.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        jLabel117.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel117.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel117.setText(" ");
-        jLabel117.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel117.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel117.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        javax.swing.GroupLayout region2_2Layout = new javax.swing.GroupLayout(region2_2);
-        region2_2.setLayout(region2_2Layout);
-        region2_2Layout.setHorizontalGroup(
-            region2_2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(region2_2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(region2_2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(region2_2Layout.createSequentialGroup()
-                        .addComponent(jLabel114, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(jLabel117, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(jLabel115, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(region2_2Layout.createSequentialGroup()
-                        .addComponent(jLabel109, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(jLabel110, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(jLabel113, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(region2_2Layout.createSequentialGroup()
-                        .addComponent(jLabel111, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(jLabel112, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(jLabel116, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-        );
-        region2_2Layout.setVerticalGroup(
-            region2_2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(region2_2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(region2_2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel109, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel110, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel113, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, 0)
-                .addGroup(region2_2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel114, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel117, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel115, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, 0)
-                .addGroup(region2_2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel111, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel112, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel116, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         region2_1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel118.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel118.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel118.setText(" ");
-        jLabel118.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel118.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel118.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell6_3.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell6_3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell6_3.setText(" ");
+        cell6_3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell6_3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell6_3.setOpaque(true);
+        cell6_3.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel119.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel119.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel119.setText(" ");
-        jLabel119.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel119.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel119.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell6_4.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell6_4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell6_4.setText(" ");
+        cell6_4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell6_4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell6_4.setOpaque(true);
+        cell6_4.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel120.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel120.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel120.setText(" ");
-        jLabel120.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel120.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel120.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell6_5.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell6_5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell6_5.setText(" ");
+        cell6_5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell6_5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell6_5.setOpaque(true);
+        cell6_5.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel121.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel121.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel121.setText(" ");
-        jLabel121.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel121.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel121.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell7_3.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell7_3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell7_3.setText(" ");
+        cell7_3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell7_3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell7_3.setOpaque(true);
+        cell7_3.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel122.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel122.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel122.setText(" ");
-        jLabel122.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel122.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel122.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell7_4.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell7_4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell7_4.setText(" ");
+        cell7_4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell7_4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell7_4.setOpaque(true);
+        cell7_4.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel123.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel123.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel123.setText(" ");
-        jLabel123.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel123.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel123.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell7_5.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell7_5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell7_5.setText(" ");
+        cell7_5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell7_5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell7_5.setOpaque(true);
+        cell7_5.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel124.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel124.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel124.setText(" ");
-        jLabel124.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel124.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel124.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell8_3.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell8_3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell8_3.setText(" ");
+        cell8_3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell8_3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell8_3.setOpaque(true);
+        cell8_3.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel125.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel125.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel125.setText(" ");
-        jLabel125.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel125.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel125.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell8_4.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell8_4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell8_4.setText(" ");
+        cell8_4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell8_4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell8_4.setOpaque(true);
+        cell8_4.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel126.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel126.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel126.setText(" ");
-        jLabel126.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel126.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel126.setPreferredSize(new java.awt.Dimension(50, 50));
+        cell8_5.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell8_5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell8_5.setText(" ");
+        cell8_5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell8_5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell8_5.setOpaque(true);
+        cell8_5.setPreferredSize(new java.awt.Dimension(50, 50));
 
         javax.swing.GroupLayout region2_1Layout = new javax.swing.GroupLayout(region2_1);
         region2_1.setLayout(region2_1Layout);
@@ -1103,42 +1164,162 @@ public class sudokuWindow extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(region2_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(region2_1Layout.createSequentialGroup()
-                        .addComponent(jLabel123, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cell7_3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel126, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cell7_4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel124, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cell7_5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(region2_1Layout.createSequentialGroup()
-                        .addComponent(jLabel118, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cell6_3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel119, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cell6_4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel122, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cell6_5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(region2_1Layout.createSequentialGroup()
-                        .addComponent(jLabel120, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cell8_3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel121, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cell8_4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel125, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(cell8_5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         region2_1Layout.setVerticalGroup(
             region2_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(region2_1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(region2_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel118, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel119, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel122, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cell6_3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell6_4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell6_5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, 0)
                 .addGroup(region2_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel123, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel126, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel124, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cell7_3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell7_4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell7_5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, 0)
                 .addGroup(region2_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel120, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel121, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel125, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(cell8_3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell8_4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell8_5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+
+        region2_2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        cell6_6.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell6_6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell6_6.setText(" ");
+        cell6_6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell6_6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell6_6.setOpaque(true);
+        cell6_6.setPreferredSize(new java.awt.Dimension(50, 50));
+
+        cell6_7.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell6_7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell6_7.setText(" ");
+        cell6_7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell6_7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell6_7.setOpaque(true);
+        cell6_7.setPreferredSize(new java.awt.Dimension(50, 50));
+
+        cell6_8.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell6_8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell6_8.setText(" ");
+        cell6_8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell6_8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell6_8.setOpaque(true);
+        cell6_8.setPreferredSize(new java.awt.Dimension(50, 50));
+
+        cell7_6.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell7_6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell7_6.setText(" ");
+        cell7_6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell7_6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell7_6.setOpaque(true);
+        cell7_6.setPreferredSize(new java.awt.Dimension(50, 50));
+
+        cell7_7.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell7_7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell7_7.setText(" ");
+        cell7_7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell7_7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell7_7.setOpaque(true);
+        cell7_7.setPreferredSize(new java.awt.Dimension(50, 50));
+
+        cell7_8.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell7_8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell7_8.setText(" ");
+        cell7_8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell7_8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell7_8.setOpaque(true);
+        cell7_8.setPreferredSize(new java.awt.Dimension(50, 50));
+
+        cell8_6.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell8_6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell8_6.setText(" ");
+        cell8_6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell8_6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell8_6.setOpaque(true);
+        cell8_6.setPreferredSize(new java.awt.Dimension(50, 50));
+
+        cell8_7.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell8_7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell8_7.setText(" ");
+        cell8_7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell8_7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell8_7.setOpaque(true);
+        cell8_7.setPreferredSize(new java.awt.Dimension(50, 50));
+
+        cell8_8.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        cell8_8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cell8_8.setText(" ");
+        cell8_8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell8_8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cell8_8.setOpaque(true);
+        cell8_8.setPreferredSize(new java.awt.Dimension(50, 50));
+
+        javax.swing.GroupLayout region2_2Layout = new javax.swing.GroupLayout(region2_2);
+        region2_2.setLayout(region2_2Layout);
+        region2_2Layout.setHorizontalGroup(
+            region2_2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(region2_2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(region2_2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(region2_2Layout.createSequentialGroup()
+                        .addComponent(cell7_6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(cell7_7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(cell7_8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(region2_2Layout.createSequentialGroup()
+                        .addComponent(cell6_6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(cell6_7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(cell6_8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(region2_2Layout.createSequentialGroup()
+                        .addComponent(cell8_6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(cell8_7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(cell8_8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        );
+        region2_2Layout.setVerticalGroup(
+            region2_2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(region2_2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(region2_2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cell6_6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell6_7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell6_8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, 0)
+                .addGroup(region2_2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cell7_6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell7_7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell7_8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, 0)
+                .addGroup(region2_2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cell8_6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell8_7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cell8_8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         javax.swing.GroupLayout sodukuBoardLayout = new javax.swing.GroupLayout(sodukuBoard);
@@ -1261,6 +1442,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         );
 
         jButton1.setText("Clear Board");
+        jButton1.setFocusable(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -1314,117 +1496,132 @@ public class sudokuWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jLabel55MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel55MouseClicked
-        String text = jLabel55.getText();
-        if (SwingUtilities.isRightMouseButton(evt)) {
-            if (text.equals(" ")) {
-                jLabel55.setText("9");
-            } else if (text.equals("1")) {
-                jLabel55.setText(" ");
-            } else {
-                jLabel55.setText(Integer.toString(Integer.parseInt(text) - 1));
-            }
-        }
+    private void cell0_1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cell0_1MouseClicked
+        clickSquare(cell0_1, evt);
+    }//GEN-LAST:event_cell0_1MouseClicked
 
-        if (SwingUtilities.isLeftMouseButton(evt)) {
-            if (text.equals(" ")) {
-                jLabel55.setText("1");
-            } else if (text.equals("9")) {
-                jLabel55.setText(" ");
-            } else {
-                jLabel55.setText(Integer.toString(Integer.parseInt(text) + 1));
-            }
-        }
-    }//GEN-LAST:event_jLabel55MouseClicked
+      private void cell0_0MouseClicked(java.awt.event.MouseEvent evt) {
+        clickSquare(cell0_0, evt);
+    }                                   
 
     /**
-     * @param args the command line arguments
+     *
+     * @param cell
+     * @param evt
      */
+    private static void clickSquare(JLabel cell, java.awt.event.MouseEvent evt) {
+        if (cell.getBackground().equals(new Color(255, 0, 0))) {
+            cellSelected = cell;
+            String text = cell.getText();
+            if (SwingUtilities.isRightMouseButton(evt)) {
+                if (text.equals(" ")) {
+                    cell.setText("9");
+                } else if (text.equals("1")) {
+                    cell.setText(" ");
+                } else {
+                    cell.setText(Integer.toString(Integer.parseInt(text) - 1));
+                }
+            }
+
+            if (SwingUtilities.isLeftMouseButton(evt)) {
+                if (text.equals(" ")) {
+                    cell.setText("1");
+                } else if (text.equals("9")) {
+                    cell.setText(" ");
+                } else {
+                    cell.setText(Integer.toString(Integer.parseInt(text) + 1));
+                }
+            }
+        } else {
+//           cellSelected.setBackground(new Color(238, 238, 238));
+            cell.setBackground(new Color(255, 0, 0));
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel cell0_0;
+    private javax.swing.JLabel cell0_1;
+    private javax.swing.JLabel cell0_2;
+    private javax.swing.JLabel cell0_3;
+    private javax.swing.JLabel cell0_4;
+    private javax.swing.JLabel cell0_5;
+    private javax.swing.JLabel cell0_6;
+    private javax.swing.JLabel cell0_7;
+    private javax.swing.JLabel cell0_8;
+    private javax.swing.JLabel cell1_0;
+    private javax.swing.JLabel cell1_1;
+    private javax.swing.JLabel cell1_2;
+    private javax.swing.JLabel cell1_3;
+    private javax.swing.JLabel cell1_4;
+    private javax.swing.JLabel cell1_5;
+    private javax.swing.JLabel cell1_6;
+    private javax.swing.JLabel cell1_7;
+    private javax.swing.JLabel cell1_8;
+    private javax.swing.JLabel cell2_0;
+    private javax.swing.JLabel cell2_1;
+    private javax.swing.JLabel cell2_2;
+    private javax.swing.JLabel cell2_3;
+    private javax.swing.JLabel cell2_4;
+    private javax.swing.JLabel cell2_5;
+    private javax.swing.JLabel cell2_6;
+    private javax.swing.JLabel cell2_7;
+    private javax.swing.JLabel cell2_8;
+    private javax.swing.JLabel cell3_0;
+    private javax.swing.JLabel cell3_1;
+    private javax.swing.JLabel cell3_2;
+    private javax.swing.JLabel cell3_3;
+    private javax.swing.JLabel cell3_4;
+    private javax.swing.JLabel cell3_5;
+    private javax.swing.JLabel cell3_6;
+    private javax.swing.JLabel cell3_7;
+    private javax.swing.JLabel cell3_8;
+    private javax.swing.JLabel cell4_0;
+    private javax.swing.JLabel cell4_1;
+    private javax.swing.JLabel cell4_2;
+    private javax.swing.JLabel cell4_3;
+    private javax.swing.JLabel cell4_4;
+    private javax.swing.JLabel cell4_5;
+    private javax.swing.JLabel cell4_6;
+    private javax.swing.JLabel cell4_7;
+    private javax.swing.JLabel cell4_8;
+    private javax.swing.JLabel cell5_0;
+    private javax.swing.JLabel cell5_1;
+    private javax.swing.JLabel cell5_2;
+    private javax.swing.JLabel cell5_3;
+    private javax.swing.JLabel cell5_4;
+    private javax.swing.JLabel cell5_5;
+    private javax.swing.JLabel cell5_6;
+    private javax.swing.JLabel cell5_7;
+    private javax.swing.JLabel cell5_8;
+    private javax.swing.JLabel cell6_0;
+    private javax.swing.JLabel cell6_1;
+    private javax.swing.JLabel cell6_2;
+    private javax.swing.JLabel cell6_3;
+    private javax.swing.JLabel cell6_4;
+    private javax.swing.JLabel cell6_5;
+    private javax.swing.JLabel cell6_6;
+    private javax.swing.JLabel cell6_7;
+    private javax.swing.JLabel cell6_8;
+    private javax.swing.JLabel cell7_0;
+    private javax.swing.JLabel cell7_1;
+    private javax.swing.JLabel cell7_2;
+    private javax.swing.JLabel cell7_3;
+    private javax.swing.JLabel cell7_4;
+    private javax.swing.JLabel cell7_5;
+    private javax.swing.JLabel cell7_6;
+    private javax.swing.JLabel cell7_7;
+    private javax.swing.JLabel cell7_8;
+    private javax.swing.JLabel cell8_0;
+    private javax.swing.JLabel cell8_1;
+    private javax.swing.JLabel cell8_2;
+    private javax.swing.JLabel cell8_3;
+    private javax.swing.JLabel cell8_4;
+    private javax.swing.JLabel cell8_5;
+    private javax.swing.JLabel cell8_6;
+    private javax.swing.JLabel cell8_7;
+    private javax.swing.JLabel cell8_8;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel100;
-    private javax.swing.JLabel jLabel101;
-    private javax.swing.JLabel jLabel102;
-    private javax.swing.JLabel jLabel103;
-    private javax.swing.JLabel jLabel104;
-    private javax.swing.JLabel jLabel105;
-    private javax.swing.JLabel jLabel106;
-    private javax.swing.JLabel jLabel107;
-    private javax.swing.JLabel jLabel108;
-    private javax.swing.JLabel jLabel109;
-    private javax.swing.JLabel jLabel110;
-    private javax.swing.JLabel jLabel111;
-    private javax.swing.JLabel jLabel112;
-    private javax.swing.JLabel jLabel113;
-    private javax.swing.JLabel jLabel114;
-    private javax.swing.JLabel jLabel115;
-    private javax.swing.JLabel jLabel116;
-    private javax.swing.JLabel jLabel117;
-    private javax.swing.JLabel jLabel118;
-    private javax.swing.JLabel jLabel119;
-    private javax.swing.JLabel jLabel120;
-    private javax.swing.JLabel jLabel121;
-    private javax.swing.JLabel jLabel122;
-    private javax.swing.JLabel jLabel123;
-    private javax.swing.JLabel jLabel124;
-    private javax.swing.JLabel jLabel125;
-    private javax.swing.JLabel jLabel126;
-    private javax.swing.JLabel jLabel46;
-    private javax.swing.JLabel jLabel47;
-    private javax.swing.JLabel jLabel48;
-    private javax.swing.JLabel jLabel49;
-    private javax.swing.JLabel jLabel50;
-    private javax.swing.JLabel jLabel51;
-    private javax.swing.JLabel jLabel52;
-    private javax.swing.JLabel jLabel53;
-    private javax.swing.JLabel jLabel54;
-    private javax.swing.JLabel jLabel55;
-    private javax.swing.JLabel jLabel56;
-    private javax.swing.JLabel jLabel57;
-    private javax.swing.JLabel jLabel58;
-    private javax.swing.JLabel jLabel59;
-    private javax.swing.JLabel jLabel60;
-    private javax.swing.JLabel jLabel61;
-    private javax.swing.JLabel jLabel62;
-    private javax.swing.JLabel jLabel63;
-    private javax.swing.JLabel jLabel64;
-    private javax.swing.JLabel jLabel65;
-    private javax.swing.JLabel jLabel66;
-    private javax.swing.JLabel jLabel67;
-    private javax.swing.JLabel jLabel68;
-    private javax.swing.JLabel jLabel69;
-    private javax.swing.JLabel jLabel70;
-    private javax.swing.JLabel jLabel71;
-    private javax.swing.JLabel jLabel72;
-    private javax.swing.JLabel jLabel73;
-    private javax.swing.JLabel jLabel74;
-    private javax.swing.JLabel jLabel75;
-    private javax.swing.JLabel jLabel76;
-    private javax.swing.JLabel jLabel77;
-    private javax.swing.JLabel jLabel78;
-    private javax.swing.JLabel jLabel79;
-    private javax.swing.JLabel jLabel80;
-    private javax.swing.JLabel jLabel81;
-    private javax.swing.JLabel jLabel82;
-    private javax.swing.JLabel jLabel83;
-    private javax.swing.JLabel jLabel84;
-    private javax.swing.JLabel jLabel85;
-    private javax.swing.JLabel jLabel86;
-    private javax.swing.JLabel jLabel87;
-    private javax.swing.JLabel jLabel88;
-    private javax.swing.JLabel jLabel89;
-    private javax.swing.JLabel jLabel90;
-    private javax.swing.JLabel jLabel91;
-    private javax.swing.JLabel jLabel92;
-    private javax.swing.JLabel jLabel93;
-    private javax.swing.JLabel jLabel94;
-    private javax.swing.JLabel jLabel95;
-    private javax.swing.JLabel jLabel96;
-    private javax.swing.JLabel jLabel97;
-    private javax.swing.JLabel jLabel98;
-    private javax.swing.JLabel jLabel99;
     private javax.swing.JPanel region0_0;
     private javax.swing.JPanel region0_1;
     private javax.swing.JPanel region0_2;
