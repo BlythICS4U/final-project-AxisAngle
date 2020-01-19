@@ -22,23 +22,20 @@ public class sudokuWindow extends javax.swing.JFrame {
      * Creates new form sudokuWindow
      */
     public sudokuWindow() {
-        cellSelected = cell0_0;
         initComponents();
-        
-//        for(int i = 0; i < 9; i++)
-//        {
-//            for(int j = 0; j < 9; j++)
-//            {
-//                  cells[i][j].addMouseListener(new java.awt.event.MouseAdapter());
-//            }
-//        }
-        cells[0][0].addMouseListener(new java.awt.event.MouseAdapter() {
 
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cell0_0MouseClicked(evt);
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                JLabel cell = cells[i][j];
+                cells[i][j].addMouseListener(new java.awt.event.MouseAdapter() {
+                    public void mouseClicked(java.awt.event.MouseEvent evt) {
+                        cellMouseClicked(evt, cell);
+                    }
+                });
             }
-        });
-         }
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -227,7 +224,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         timerPause = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         time = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        clearButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -251,11 +248,6 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell0_1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell0_1.setOpaque(true);
         cell0_1.setPreferredSize(new java.awt.Dimension(50, 50));
-        cell0_1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cell0_1MouseClicked(evt);
-            }
-        });
 
         cell0_2.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
         cell0_2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -1407,6 +1399,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         jLabel1.setText("Time:");
 
         time.setText("00:00:00");
+        time.setDoubleBuffered(true);
 
         javax.swing.GroupLayout timerLayout = new javax.swing.GroupLayout(timer);
         timer.setLayout(timerLayout);
@@ -1441,11 +1434,11 @@ public class sudokuWindow extends javax.swing.JFrame {
                 .addGap(0, 0, 0))
         );
 
-        jButton1.setText("Clear Board");
-        jButton1.setFocusable(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        clearButton.setText("Clear Board");
+        clearButton.setFocusable(false);
+        clearButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                clearButtonActionPerformed(evt);
             }
         });
 
@@ -1463,13 +1456,13 @@ public class sudokuWindow extends javax.swing.JFrame {
                         .addComponent(timer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(clearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(68, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jButton1)
+                .addComponent(clearButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(sodukuBoard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -1480,29 +1473,26 @@ public class sudokuWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+
     private void timerResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timerResetActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_timerResetActionPerformed
 
     private void timerStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timerStartActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_timerStartActionPerformed
 
     private void timerPauseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timerPauseActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_timerPauseActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_clearButtonActionPerformed
 
-    private void cell0_1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cell0_1MouseClicked
-        clickSquare(cell0_1, evt);
-    }//GEN-LAST:event_cell0_1MouseClicked
-
-      private void cell0_0MouseClicked(java.awt.event.MouseEvent evt) {
-        clickSquare(cell0_0, evt);
-    }                                   
+    private void cellMouseClicked(java.awt.event.MouseEvent evt, JLabel cell) {
+        clickSquare(cell, evt);
+    }
 
     /**
      *
@@ -1511,7 +1501,7 @@ public class sudokuWindow extends javax.swing.JFrame {
      */
     private static void clickSquare(JLabel cell, java.awt.event.MouseEvent evt) {
         if (cell.getBackground().equals(new Color(255, 0, 0))) {
-            cellSelected = cell;
+            
             String text = cell.getText();
             if (SwingUtilities.isRightMouseButton(evt)) {
                 if (text.equals(" ")) {
@@ -1532,12 +1522,40 @@ public class sudokuWindow extends javax.swing.JFrame {
                     cell.setText(Integer.toString(Integer.parseInt(text) + 1));
                 }
             }
+            
         } else {
-//           cellSelected.setBackground(new Color(238, 238, 238));
+            if(cellSelected != null){
+            cellSelected.setBackground(new Color(238, 238, 238));
+            cellSelected = cell;
             cell.setBackground(new Color(255, 0, 0));
+            }
+            else
+            {
+                 cellSelected = cell;
+            cell.setBackground(new Color(255, 0, 0));
+            }
         }
     }
 
+    /**
+     * Reads the sodukuGrid
+     *
+     * @param cells
+     * @return all numbers in the sodukuGrid
+     */
+    private static int[][] getArray(JLabel[][] cells) {
+        int[][] array = new int[9][9];
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (cells[i][j].getText().equals(" ")) {
+                    array[i][j] = -1;
+                } else {
+                    array[i][j] = Integer.parseInt(cells[i][j].getText());
+                }
+            }
+        }
+        return array;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel cell0_0;
     private javax.swing.JLabel cell0_1;
@@ -1620,7 +1638,7 @@ public class sudokuWindow extends javax.swing.JFrame {
     private javax.swing.JLabel cell8_6;
     private javax.swing.JLabel cell8_7;
     private javax.swing.JLabel cell8_8;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton clearButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel region0_0;
     private javax.swing.JPanel region0_1;
