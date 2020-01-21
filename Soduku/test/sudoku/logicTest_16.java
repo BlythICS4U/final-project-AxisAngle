@@ -14,14 +14,12 @@ import org.junit.BeforeClass;
  *
  * @author bachle
  */
-public class logicTest {
+public class logicTest_16 {
 
     private static int[][] test1;
-    private static cell[][] cellTest1;
-    private static int[][] temp;
     private static logic stuff;
 
-    public logicTest() {
+    public logicTest_16() {
     }
 
     @BeforeClass
@@ -35,10 +33,10 @@ public class logicTest {
             {9, -1, -1, -1, 8, -1, 3, -1, 7},
             {-1, -1, -1, -1, -1, 8, 7, 1, -1},
             {-1, 5, -1, -1, 7, -1, 2, -1, -1},
-            {-1, -1, -1, 3, -1, 9, -1, -1, -1},};
-  
+            {-1, -1, -1, 3, -1, 9, -1, -1, -1}};
+
         stuff = new logic();
-       
+
     }
 
     /**
@@ -47,13 +45,21 @@ public class logicTest {
     @Test
     public void testSetup() {
       stuff.setup(test1);
-        
+
         assertFalse(stuff.getCell(0, 0).isInput);
         assertEquals(stuff.getCell(0, 0).possibleValues.size(), 9);
-        
+
         assertTrue(stuff.getCell(0, 3).isInput);
         assertEquals(stuff.getCell(0, 3).possibleValues.size(), 1);
         assertTrue(stuff.getCell(0, 3).possibleValues.contains(8));
     }
 
+    /**
+     *
+     */
+    @Test
+    public void testSolve()
+    {
+        stuff.solve();
+    }
 }
