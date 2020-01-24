@@ -50,9 +50,9 @@ public class logic {
 
     /**
      *
-     * @param array
+     * @return 
      */
-    public void solve() {
+    public String[][] solve() {
         boolean reducedBox = true;
         boolean reducedVertical = true;
         boolean reducedHorizontal = true;
@@ -97,6 +97,22 @@ public class logic {
 
         printPossibleValues();
         printBoard();
+        String[][] num = new String[9][9];
+        for(int i = 0; i < 9 ; i++)
+        {
+            for(int j = 0; j < 9; j++)
+            {
+                if(cells[i][j].possibleValues.size() == 1)
+                {
+                    num[i][j] = cells[i][j].possibleValues.toString();
+                }
+                else
+                {
+                    num[i][j] = " ";
+                }
+            }
+        }
+        return num;
     }
 
     /**

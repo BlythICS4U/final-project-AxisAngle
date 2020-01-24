@@ -14,36 +14,50 @@ import javax.swing.SwingUtilities;
  * @author bachle
  */
 public class sudokuWindow extends javax.swing.JFrame {
+
+    private boolean bruh;
     private boolean[][] isSet;
     private static JLabel cellSelected;
     private JLabel[][] cells;
+    private static logic stuff;
 
     /**
      * Creates new form sudokuWindow
      */
     public sudokuWindow() {
+        stuff = new logic();
         initComponents();
         isSet = new boolean[9][9];
-        for(int i = 0; i < 9; i++)
-        {
-            for(int j = 0; j < 9; j++)
-            {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
                 isSet[i][j] = false;
             }
         }
-        //Adds mouse listeners and cellMouseClicked method to all 81 cells
+
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
-                int ii=i;
+                int ii = i;
                 int jj = j;
+             
+                //Adds mouse listeners and cellMouseClicked method to all 81 cells
                 cells[i][j].addMouseListener(new java.awt.event.MouseAdapter() {
                     @Override
                     public void mouseClicked(java.awt.event.MouseEvent evt) {
                         cellMouseClicked(evt, ii, jj);
                     }
                 });
+                
+                //Adds mouse wheel listeners and cellMouseWheelMoved method to all 81 cells
+                cells[i][j].addMouseWheelListener(new java.awt.event.MouseAdapter() {
+                    @Override
+                    public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
+                        cellMouseWheelMoved(evt, ii, jj);
+                    }
+                });
             }
         }
+        
+        
     }
 
     /**
@@ -229,25 +243,36 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell8_8 = new javax.swing.JLabel();
         cells[8][8] = cell8_8;
         timer = new javax.swing.JPanel();
-        timerStart = new javax.swing.JButton();
-        timerReset = new javax.swing.JButton();
-        timerPause = new javax.swing.JButton();
+        timerStartButton = new javax.swing.JButton();
+        timerResetButton = new javax.swing.JButton();
+        timerPauseButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        time = new javax.swing.JLabel();
+        timeName = new javax.swing.JLabel();
         clearButton = new javax.swing.JButton();
-        SetButton = new javax.swing.JButton();
+        setButton = new javax.swing.JButton();
         resetButton = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        hintButton = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
+        solveButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         puzzlesComboBox = new javax.swing.JComboBox<>();
-        String[] puzzleNames = readPuzzle.getFiles("puzzles");
+        String[] puzzleNames = sudoku.readFiles.getFiles("puzzles");
         for(int i = 0; i < puzzleNames.length; i++)
         {
             puzzlesComboBox.addItem(puzzleNames[i]);
         }
+        musicPlayer = new javax.swing.JPanel();
+        musicComboBox = new javax.swing.JComboBox<>();
+        String[] musicNames = sudoku.readFiles.getFiles("music");
+        for(int i = 0; i < musicNames.length; i++)
+        {
+            musicComboBox.addItem(musicNames[i]);
+        }
+        pauseAndPlayButton = new javax.swing.JButton();
+        volumeSlider = new javax.swing.JSlider();
+        jLabel4 = new javax.swing.JLabel();
+        loopCheckBox = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sudoku");
@@ -260,7 +285,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell0_0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell0_0.setText(" ");
         cell0_0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        cell0_0.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        cell0_0.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell0_0.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell0_0.setOpaque(true);
         cell0_0.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -269,6 +294,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell0_1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell0_1.setText(" ");
         cell0_1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell0_1.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell0_1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell0_1.setOpaque(true);
         cell0_1.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -277,6 +303,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell0_2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell0_2.setText(" ");
         cell0_2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell0_2.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell0_2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell0_2.setOpaque(true);
         cell0_2.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -285,6 +312,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell1_0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell1_0.setText(" ");
         cell1_0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell1_0.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell1_0.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell1_0.setOpaque(true);
         cell1_0.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -293,6 +321,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell1_1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell1_1.setText(" ");
         cell1_1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell1_1.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell1_1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell1_1.setOpaque(true);
         cell1_1.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -301,6 +330,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell1_2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell1_2.setText(" ");
         cell1_2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell1_2.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell1_2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell1_2.setOpaque(true);
         cell1_2.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -309,6 +339,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell2_0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell2_0.setText(" ");
         cell2_0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell2_0.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell2_0.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell2_0.setOpaque(true);
         cell2_0.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -317,6 +348,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell2_1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell2_1.setText(" ");
         cell2_1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell2_1.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell2_1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell2_1.setOpaque(true);
         cell2_1.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -325,6 +357,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell2_2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell2_2.setText(" ");
         cell2_2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell2_2.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell2_2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell2_2.setOpaque(true);
         cell2_2.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -381,6 +414,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell0_3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell0_3.setText(" ");
         cell0_3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell0_3.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell0_3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell0_3.setOpaque(true);
         cell0_3.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -389,6 +423,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell0_4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell0_4.setText(" ");
         cell0_4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell0_4.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell0_4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell0_4.setOpaque(true);
         cell0_4.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -397,6 +432,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell0_5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell0_5.setText(" ");
         cell0_5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell0_5.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell0_5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell0_5.setOpaque(true);
         cell0_5.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -405,6 +441,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell1_3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell1_3.setText(" ");
         cell1_3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell1_3.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell1_3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell1_3.setOpaque(true);
         cell1_3.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -413,6 +450,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell1_4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell1_4.setText(" ");
         cell1_4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell1_4.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell1_4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell1_4.setOpaque(true);
         cell1_4.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -421,6 +459,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell1_5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell1_5.setText(" ");
         cell1_5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell1_5.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell1_5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell1_5.setOpaque(true);
         cell1_5.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -429,6 +468,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell2_3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell2_3.setText(" ");
         cell2_3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell2_3.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell2_3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell2_3.setOpaque(true);
         cell2_3.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -437,6 +477,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell2_4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell2_4.setText(" ");
         cell2_4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell2_4.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell2_4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell2_4.setOpaque(true);
         cell2_4.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -445,6 +486,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell2_5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell2_5.setText(" ");
         cell2_5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell2_5.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell2_5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell2_5.setOpaque(true);
         cell2_5.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -501,6 +543,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell0_6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell0_6.setText(" ");
         cell0_6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell0_6.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell0_6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell0_6.setOpaque(true);
         cell0_6.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -509,6 +552,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell0_7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell0_7.setText(" ");
         cell0_7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell0_7.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell0_7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell0_7.setOpaque(true);
         cell0_7.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -517,6 +561,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell0_8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell0_8.setText(" ");
         cell0_8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell0_8.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell0_8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell0_8.setOpaque(true);
         cell0_8.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -525,6 +570,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell1_6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell1_6.setText(" ");
         cell1_6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell1_6.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell1_6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell1_6.setOpaque(true);
         cell1_6.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -533,6 +579,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell1_7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell1_7.setText(" ");
         cell1_7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell1_7.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell1_7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell1_7.setOpaque(true);
         cell1_7.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -541,6 +588,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell1_8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell1_8.setText(" ");
         cell1_8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell1_8.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell1_8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell1_8.setOpaque(true);
         cell1_8.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -549,6 +597,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell2_6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell2_6.setText(" ");
         cell2_6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell2_6.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell2_6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell2_6.setOpaque(true);
         cell2_6.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -557,6 +606,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell2_7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell2_7.setText(" ");
         cell2_7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell2_7.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell2_7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell2_7.setOpaque(true);
         cell2_7.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -565,6 +615,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell2_8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell2_8.setText(" ");
         cell2_8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell2_8.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell2_8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell2_8.setOpaque(true);
         cell2_8.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -621,6 +672,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell3_0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell3_0.setText(" ");
         cell3_0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell3_0.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell3_0.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell3_0.setOpaque(true);
         cell3_0.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -629,6 +681,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell3_1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell3_1.setText(" ");
         cell3_1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell3_1.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell3_1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell3_1.setOpaque(true);
         cell3_1.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -637,6 +690,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell3_2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell3_2.setText(" ");
         cell3_2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell3_2.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell3_2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell3_2.setOpaque(true);
         cell3_2.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -645,6 +699,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell4_0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell4_0.setText(" ");
         cell4_0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell4_0.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell4_0.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell4_0.setOpaque(true);
         cell4_0.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -653,6 +708,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell4_1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell4_1.setText(" ");
         cell4_1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell4_1.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell4_1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell4_1.setOpaque(true);
         cell4_1.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -661,6 +717,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell4_2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell4_2.setText(" ");
         cell4_2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell4_2.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell4_2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell4_2.setOpaque(true);
         cell4_2.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -669,6 +726,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell5_0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell5_0.setText(" ");
         cell5_0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell5_0.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell5_0.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell5_0.setOpaque(true);
         cell5_0.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -677,6 +735,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell5_1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell5_1.setText(" ");
         cell5_1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell5_1.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell5_1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell5_1.setOpaque(true);
         cell5_1.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -685,6 +744,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell5_2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell5_2.setText(" ");
         cell5_2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell5_2.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell5_2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell5_2.setOpaque(true);
         cell5_2.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -743,6 +803,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell3_3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell3_3.setText(" ");
         cell3_3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell3_3.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell3_3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell3_3.setOpaque(true);
         cell3_3.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -751,6 +812,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell3_4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell3_4.setText(" ");
         cell3_4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell3_4.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell3_4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell3_4.setOpaque(true);
         cell3_4.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -759,6 +821,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell3_5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell3_5.setText(" ");
         cell3_5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell3_5.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell3_5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell3_5.setOpaque(true);
         cell3_5.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -767,6 +830,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell4_3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell4_3.setText(" ");
         cell4_3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell4_3.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell4_3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell4_3.setOpaque(true);
         cell4_3.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -775,6 +839,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell4_4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell4_4.setText(" ");
         cell4_4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell4_4.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell4_4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell4_4.setOpaque(true);
         cell4_4.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -783,6 +848,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell4_5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell4_5.setText(" ");
         cell4_5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell4_5.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell4_5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell4_5.setOpaque(true);
         cell4_5.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -791,6 +857,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell5_3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell5_3.setText(" ");
         cell5_3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell5_3.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell5_3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell5_3.setOpaque(true);
         cell5_3.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -799,6 +866,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell5_4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell5_4.setText(" ");
         cell5_4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell5_4.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell5_4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell5_4.setOpaque(true);
         cell5_4.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -807,6 +875,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell5_5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell5_5.setText(" ");
         cell5_5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell5_5.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell5_5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell5_5.setOpaque(true);
         cell5_5.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -863,6 +932,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell3_6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell3_6.setText(" ");
         cell3_6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell3_6.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell3_6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell3_6.setOpaque(true);
         cell3_6.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -871,6 +941,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell3_7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell3_7.setText(" ");
         cell3_7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell3_7.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell3_7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell3_7.setOpaque(true);
         cell3_7.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -879,6 +950,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell3_8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell3_8.setText(" ");
         cell3_8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell3_8.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell3_8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell3_8.setOpaque(true);
         cell3_8.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -887,6 +959,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell4_6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell4_6.setText(" ");
         cell4_6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell4_6.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell4_6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell4_6.setOpaque(true);
         cell4_6.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -895,6 +968,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell4_7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell4_7.setText(" ");
         cell4_7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell4_7.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell4_7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell4_7.setOpaque(true);
         cell4_7.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -903,6 +977,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell4_8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell4_8.setText(" ");
         cell4_8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell4_8.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell4_8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell4_8.setOpaque(true);
         cell4_8.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -911,6 +986,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell5_6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell5_6.setText(" ");
         cell5_6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell5_6.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell5_6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell5_6.setOpaque(true);
         cell5_6.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -919,6 +995,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell5_7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell5_7.setText(" ");
         cell5_7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell5_7.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell5_7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell5_7.setOpaque(true);
         cell5_7.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -927,6 +1004,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell5_8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell5_8.setText(" ");
         cell5_8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell5_8.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell5_8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell5_8.setOpaque(true);
         cell5_8.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -983,6 +1061,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell6_0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell6_0.setText(" ");
         cell6_0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell6_0.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell6_0.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell6_0.setOpaque(true);
         cell6_0.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -991,6 +1070,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell6_1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell6_1.setText(" ");
         cell6_1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell6_1.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell6_1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell6_1.setOpaque(true);
         cell6_1.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -999,6 +1079,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell6_2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell6_2.setText(" ");
         cell6_2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell6_2.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell6_2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell6_2.setOpaque(true);
         cell6_2.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -1007,6 +1088,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell7_0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell7_0.setText(" ");
         cell7_0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell7_0.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell7_0.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell7_0.setOpaque(true);
         cell7_0.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -1014,6 +1096,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell7_1.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
         cell7_1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell7_1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell7_1.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell7_1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell7_1.setOpaque(true);
         cell7_1.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -1022,6 +1105,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell7_2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell7_2.setText(" ");
         cell7_2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell7_2.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell7_2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell7_2.setOpaque(true);
         cell7_2.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -1030,6 +1114,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell8_0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell8_0.setText(" ");
         cell8_0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell8_0.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell8_0.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell8_0.setOpaque(true);
         cell8_0.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -1038,6 +1123,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell8_1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell8_1.setText(" ");
         cell8_1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell8_1.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell8_1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell8_1.setOpaque(true);
         cell8_1.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -1046,6 +1132,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell8_2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell8_2.setText(" ");
         cell8_2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell8_2.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell8_2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell8_2.setOpaque(true);
         cell8_2.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -1104,6 +1191,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell6_3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell6_3.setText(" ");
         cell6_3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell6_3.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell6_3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell6_3.setOpaque(true);
         cell6_3.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -1112,6 +1200,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell6_4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell6_4.setText(" ");
         cell6_4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell6_4.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell6_4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell6_4.setOpaque(true);
         cell6_4.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -1120,6 +1209,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell6_5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell6_5.setText(" ");
         cell6_5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell6_5.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell6_5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell6_5.setOpaque(true);
         cell6_5.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -1128,6 +1218,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell7_3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell7_3.setText(" ");
         cell7_3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell7_3.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell7_3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell7_3.setOpaque(true);
         cell7_3.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -1136,6 +1227,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell7_4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell7_4.setText(" ");
         cell7_4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell7_4.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell7_4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell7_4.setOpaque(true);
         cell7_4.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -1144,6 +1236,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell7_5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell7_5.setText(" ");
         cell7_5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell7_5.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell7_5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell7_5.setOpaque(true);
         cell7_5.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -1152,6 +1245,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell8_3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell8_3.setText(" ");
         cell8_3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell8_3.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell8_3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell8_3.setOpaque(true);
         cell8_3.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -1160,6 +1254,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell8_4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell8_4.setText(" ");
         cell8_4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell8_4.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell8_4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell8_4.setOpaque(true);
         cell8_4.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -1168,6 +1263,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell8_5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell8_5.setText(" ");
         cell8_5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell8_5.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell8_5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell8_5.setOpaque(true);
         cell8_5.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -1224,6 +1320,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell6_6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell6_6.setText(" ");
         cell6_6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell6_6.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell6_6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell6_6.setOpaque(true);
         cell6_6.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -1232,6 +1329,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell6_7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell6_7.setText(" ");
         cell6_7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell6_7.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell6_7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell6_7.setOpaque(true);
         cell6_7.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -1240,6 +1338,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell6_8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell6_8.setText(" ");
         cell6_8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell6_8.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell6_8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell6_8.setOpaque(true);
         cell6_8.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -1248,6 +1347,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell7_6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell7_6.setText(" ");
         cell7_6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell7_6.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell7_6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell7_6.setOpaque(true);
         cell7_6.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -1256,6 +1356,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell7_7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell7_7.setText(" ");
         cell7_7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell7_7.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell7_7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell7_7.setOpaque(true);
         cell7_7.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -1264,6 +1365,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell7_8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell7_8.setText(" ");
         cell7_8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell7_8.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell7_8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell7_8.setOpaque(true);
         cell7_8.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -1272,6 +1374,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell8_6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell8_6.setText(" ");
         cell8_6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell8_6.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell8_6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell8_6.setOpaque(true);
         cell8_6.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -1280,6 +1383,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell8_7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell8_7.setText(" ");
         cell8_7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell8_7.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell8_7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell8_7.setOpaque(true);
         cell8_7.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -1288,6 +1392,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         cell8_8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cell8_8.setText(" ");
         cell8_8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cell8_8.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         cell8_8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cell8_8.setOpaque(true);
         cell8_8.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -1392,38 +1497,38 @@ public class sudokuWindow extends javax.swing.JFrame {
                         .addComponent(region2_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
-        timerStart.setText("Start");
-        timerStart.setFocusable(false);
-        timerStart.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        timerStart.addActionListener(new java.awt.event.ActionListener() {
+        timerStartButton.setText("Start");
+        timerStartButton.setFocusable(false);
+        timerStartButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        timerStartButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                timerStartActionPerformed(evt);
+                timerStartButtonActionPerformed(evt);
             }
         });
 
-        timerReset.setText("Reset");
-        timerReset.setFocusable(false);
-        timerReset.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        timerReset.addActionListener(new java.awt.event.ActionListener() {
+        timerResetButton.setText("Reset");
+        timerResetButton.setFocusable(false);
+        timerResetButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        timerResetButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                timerResetActionPerformed(evt);
+                timerResetButtonActionPerformed(evt);
             }
         });
 
-        timerPause.setText("Pause");
-        timerPause.setFocusable(false);
-        timerPause.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        timerPause.addActionListener(new java.awt.event.ActionListener() {
+        timerPauseButton.setText("Pause");
+        timerPauseButton.setFocusable(false);
+        timerPauseButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        timerPauseButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                timerPauseActionPerformed(evt);
+                timerPauseButtonActionPerformed(evt);
             }
         });
 
         jLabel1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jLabel1.setText("Time:");
 
-        time.setText("00:00:00");
-        time.setDoubleBuffered(true);
+        timeName.setText("0");
+        timeName.setDoubleBuffered(true);
 
         javax.swing.GroupLayout timerLayout = new javax.swing.GroupLayout(timer);
         timer.setLayout(timerLayout);
@@ -1435,13 +1540,13 @@ public class sudokuWindow extends javax.swing.JFrame {
                     .addGroup(timerLayout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(29, 29, 29)
-                        .addComponent(time))
+                        .addComponent(timeName))
                     .addGroup(timerLayout.createSequentialGroup()
-                        .addComponent(timerStart, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(timerStartButton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(timerReset, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(timerResetButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, 0)
-                .addComponent(timerPause, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(timerPauseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         timerLayout.setVerticalGroup(
@@ -1449,16 +1554,17 @@ public class sudokuWindow extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, timerLayout.createSequentialGroup()
                 .addGroup(timerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(time))
-                .addGap(0, 17, Short.MAX_VALUE)
+                    .addComponent(timeName))
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(timerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(timerStart)
-                    .addComponent(timerReset)
-                    .addComponent(timerPause))
-                .addGap(0, 0, 0))
+                    .addComponent(timerStartButton)
+                    .addComponent(timerResetButton)
+                    .addComponent(timerPauseButton))
+                .addGap(41, 41, 41))
         );
 
         clearButton.setText("Clear Board");
+        clearButton.setToolTipText("Clears the suduku board");
         clearButton.setFocusable(false);
         clearButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1466,42 +1572,48 @@ public class sudokuWindow extends javax.swing.JFrame {
             }
         });
 
-        SetButton.setText("Set");
-        SetButton.setToolTipText("");
-        SetButton.setFocusable(false);
-        SetButton.addActionListener(new java.awt.event.ActionListener() {
+        setButton.setText("Set");
+        setButton.setToolTipText("");
+        setButton.setFocusable(false);
+        setButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SetButtonActionPerformed(evt);
+                setButtonActionPerformed(evt);
             }
         });
 
         resetButton.setText("Reset");
+        resetButton.setFocusable(false);
         resetButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 resetButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Hint");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        hintButton.setText("Hint");
+        hintButton.setFocusable(false);
+        hintButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                hintButtonActionPerformed(evt);
             }
         });
 
         jButton3.setText("Check");
+        jButton3.setToolTipText("Checks sudoku board for any invalid inputs");
+        jButton3.setFocusable(false);
 
         jLabel2.setText("Board Settings");
 
-        jButton4.setText("Solve");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        solveButton.setText("Solve");
+        solveButton.setFocusable(false);
+        solveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                solveButtonActionPerformed(evt);
             }
         });
 
         jLabel3.setText("Solve Settings");
 
+        puzzlesComboBox.setToolTipText("");
         puzzlesComboBox.setFocusable(false);
         puzzlesComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1509,95 +1621,169 @@ public class sudokuWindow extends javax.swing.JFrame {
             }
         });
 
+        musicComboBox.setFocusable(false);
+        musicComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                musicComboBoxActionPerformed(evt);
+            }
+        });
+
+        pauseAndPlayButton.setText("I I");
+        pauseAndPlayButton.setFocusable(false);
+        pauseAndPlayButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pauseAndPlayButtonActionPerformed(evt);
+            }
+        });
+
+        volumeSlider.setFocusable(false);
+
+        jLabel4.setText("Currently Playing:");
+
+        loopCheckBox.setText("Loop");
+        loopCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loopCheckBoxActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout musicPlayerLayout = new javax.swing.GroupLayout(musicPlayer);
+        musicPlayer.setLayout(musicPlayerLayout);
+        musicPlayerLayout.setHorizontalGroup(
+            musicPlayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(musicPlayerLayout.createSequentialGroup()
+                .addGroup(musicPlayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(musicPlayerLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(musicPlayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(musicPlayerLayout.createSequentialGroup()
+                                .addComponent(volumeSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(pauseAndPlayButton))
+                            .addComponent(jLabel4)))
+                    .addGroup(musicPlayerLayout.createSequentialGroup()
+                        .addComponent(musicComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(loopCheckBox)))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        musicPlayerLayout.setVerticalGroup(
+            musicPlayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(musicPlayerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(musicPlayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(musicComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(loopCheckBox))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(musicPlayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(volumeSlider, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pauseAndPlayButton, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(238, 238, 238)
-                        .addComponent(timer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(puzzlesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(jLabel3)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(sodukuBoard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2)
-                    .addComponent(SetButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(clearButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(resetButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(12, 12, 12))
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(hintButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(solveButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel3)))
+                .addGap(40, 40, 40)
+                .addComponent(sodukuBoard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel2)
+                        .addComponent(setButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(clearButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(resetButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(puzzlesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(musicPlayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(timer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(138, 138, 138))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(clearButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(SetButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(resetButton))
                     .addComponent(sodukuBoard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)
+                        .addComponent(hintButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4)))
+                        .addComponent(solveButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(clearButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(setButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(resetButton)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(puzzlesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(timer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(19, 19, 19))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(puzzlesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(musicPlayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+   
     /**
      *
      * @param evt
      */
-    private void timerResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timerResetActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_timerResetActionPerformed
-
-    /**
-     *
-     * @param evt
-     */
-    private void timerStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timerStartActionPerformed
-
-    }//GEN-LAST:event_timerStartActionPerformed
+    private void timerResetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timerResetButtonActionPerformed
+        bruh = false;
+        timeName.setText("0");
+    }//GEN-LAST:event_timerResetButtonActionPerformed
 
     /**
      *
      * @param evt
      */
-    private void timerPauseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timerPauseActionPerformed
+    private void timerStartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timerStartButtonActionPerformed
+        bruh = true;
+        int time1 = Integer.parseInt(timeName.getText());
+        while(bruh){
+        
+        timeName.setText(Integer.toString(time1++));
+        
+        }
+    }//GEN-LAST:event_timerStartButtonActionPerformed
 
-    }//GEN-LAST:event_timerPauseActionPerformed
+    /**
+     *
+     * @param evt
+     */
+    private void timerPauseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timerPauseButtonActionPerformed
+        bruh = false;
+    }//GEN-LAST:event_timerPauseButtonActionPerformed
 
     /**
      *
@@ -1606,73 +1792,170 @@ public class sudokuWindow extends javax.swing.JFrame {
     private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
-                if(isSet[i][j] != true){
-                cells[i][j].setText(" ");
+                if (isSet[i][j] != true) {
+                    cells[i][j].setText(" ");
+                }
+
+                if (cells[i][j].getBackground() != new Color(238, 238, 238)) {
+                    cellSelected = null;
+                    cells[i][j].setBackground(new Color(238, 238, 238));
+
                 }
             }
         }
     }//GEN-LAST:event_clearButtonActionPerformed
-    
+
     /**
      *
      * @param evt
      */
-    private void SetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SetButtonActionPerformed
-        for(int i = 0; i < 9; i++){
-            for(int j = 0; j < 9; j++)
-            {
-                if(!cells[i][j].getText().equals(" "))
-                {
+    private void setButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setButtonActionPerformed
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (!cells[i][j].getText().equals(" ")) {
                     isSet[i][j] = true;
                 }
-                
-                if(cells[i][j].getBackground() != new Color(238,238,238))
-                {
+
+                if (cells[i][j].getBackground() != new Color(238, 238, 238)) {
                     cellSelected = null;
-                    cells[i][j].setBackground(new Color(238,238,238));
+                    cells[i][j].setBackground(new Color(238, 238, 238));
                 }
             }
         }
-    }//GEN-LAST:event_SetButtonActionPerformed
+    }//GEN-LAST:event_setButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    /**
+     *
+     * @param evt
+     */
+    private void hintButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hintButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_hintButtonActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    /**
+     *
+     * @param evt
+     */
+    private void solveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solveButtonActionPerformed
+        stuff.setup(getArray(cells));
+        String[][] bruhmoment = stuff.solve();
+        
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                bruhmoment[i][j] = bruhmoment[i][j].replace("[", "");
+                bruhmoment[i][j] = bruhmoment[i][j].replace("]", "");
+                
+                cells[i][j].setText(bruhmoment[i][j]);
+            }
+        }
+    }//GEN-LAST:event_solveButtonActionPerformed
 
+    /**
+     *
+     * @param evt
+     */
     private void puzzlesComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_puzzlesComboBoxActionPerformed
         String[][] puzzle = new String[9][9];
-                puzzle = readPuzzle.readFile(puzzlesComboBox.getSelectedItem().toString());
-        for(int i = 0; i < 9; i++)
-        {
-            for(int j = 0; j< 9; j++)
-            {
+        puzzle = readFiles.readFile(puzzlesComboBox.getSelectedItem().toString());
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
                 cells[i][j].setText(puzzle[i][j]);
             }
         }
     }//GEN-LAST:event_puzzlesComboBoxActionPerformed
 
+    /**
+     *
+     * @param evt
+     */
     private void resetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetButtonActionPerformed
-for(int i = 0; i < 9; i++)
-{
-    for(int j = 0; j < 9; j++)
-    {
-        cells[i][j].setText(" ");
-        isSet[i][j] = false;
-    }
-}
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                cells[i][j].setText(" ");
+                isSet[i][j] = false;
+
+                if (cells[i][j].getBackground() != new Color(238, 238, 238)) {
+                    cellSelected = null;
+                    cells[i][j].setBackground(new Color(238, 238, 238));
+
+                }
+            }
+        }
     }//GEN-LAST:event_resetButtonActionPerformed
 
+    private void pauseAndPlayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pauseAndPlayButtonActionPerformed
+        if(pauseAndPlayButton.getText().equals("| |"))
+        {
+            pauseAndPlayButton.setText("Play");
+        }
+        else
+        {
+            pauseAndPlayButton.setText("| |");
+        }
+    }//GEN-LAST:event_pauseAndPlayButtonActionPerformed
+
+    private void musicComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_musicComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_musicComboBoxActionPerformed
+
+    private void loopCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loopCheckBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_loopCheckBoxActionPerformed
+    
     /**
-     * 
+     *
      * @param evt
-     * @param cell 
+     * @param cell
      */
-    private void cellMouseClicked(java.awt.event.MouseEvent evt, int i ,int j ) {
-        if(isSet[i][j] == false){
+    private void cellMouseWheelMoved(java.awt.event.MouseWheelEvent evt, int i, int j) {
+        if (isSet[i][j] == false) {
+            mouseWheelSquare(cells[i][j], evt);
+        }
+    }
+    
+        /**
+     *
+     * @param cell
+     * @param event
+     */
+    private static void mouseWheelSquare(JLabel cell, java.awt.event.MouseWheelEvent event) {
+        Color cellSelectedColor = new Color(51, 255, 51);
+
+        if (cell.getBackground().equals(cellSelectedColor)) {
+            String text = cell.getText();
+           
+            //Scroll up
+            if (event.getWheelRotation() >= 0) {
+                if (text.equals(" ")) {
+                    cell.setText("9");
+                } else if (text.equals("1")) {
+                    cell.setText(" ");
+                } else {
+                    cell.setText(Integer.toString(Integer.parseInt(text) - 1));
+                }
+            }
+
+            //Scroll down
+            if (event.getScrollType() <= 0) {
+                if (text.equals(" ")) {
+                    cell.setText("1");
+                } else if (text.equals("9")) {
+                    cell.setText(" ");
+                } else {
+                    cell.setText(Integer.toString(Integer.parseInt(text) + 1));
+                }
+            }
+
+        } 
+    }
+    
+    /**
+     *
+     * @param evt
+     * @param cell
+     */
+    private void cellMouseClicked(java.awt.event.MouseEvent evt, int i, int j) {
+        if (isSet[i][j] == false) {
             clickSquare(cells[i][j], evt);
         }
     }
@@ -1683,11 +1966,12 @@ for(int i = 0; i < 9; i++)
      * @param event
      */
     private static void clickSquare(JLabel cell, java.awt.event.MouseEvent event) {
-        Color cellSelectedColor = new Color(51,255,51);
+        Color cellSelectedColor = new Color(51, 255, 51);
 
         if (cell.getBackground().equals(cellSelectedColor)) {
-
             String text = cell.getText();
+           
+            //Right Click
             if (SwingUtilities.isRightMouseButton(event)) {
                 if (text.equals(" ")) {
                     cell.setText("9");
@@ -1698,6 +1982,7 @@ for(int i = 0; i < 9; i++)
                 }
             }
 
+            //Left Click
             if (SwingUtilities.isLeftMouseButton(event)) {
                 if (text.equals(" ")) {
                     cell.setText("1");
@@ -1740,7 +2025,6 @@ for(int i = 0; i < 9; i++)
         return array;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton SetButton;
     private javax.swing.JLabel cell0_0;
     private javax.swing.JLabel cell0_1;
     private javax.swing.JLabel cell0_2;
@@ -1823,12 +2107,16 @@ for(int i = 0; i < 9; i++)
     private javax.swing.JLabel cell8_7;
     private javax.swing.JLabel cell8_8;
     private javax.swing.JButton clearButton;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton hintButton;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JCheckBox loopCheckBox;
+    private javax.swing.JComboBox<String> musicComboBox;
+    private javax.swing.JPanel musicPlayer;
+    private javax.swing.JButton pauseAndPlayButton;
     private javax.swing.JComboBox<String> puzzlesComboBox;
     private javax.swing.JPanel region0_0;
     private javax.swing.JPanel region0_1;
@@ -1840,11 +2128,14 @@ for(int i = 0; i < 9; i++)
     private javax.swing.JPanel region2_1;
     private javax.swing.JPanel region2_2;
     private javax.swing.JButton resetButton;
+    private javax.swing.JButton setButton;
     private javax.swing.JPanel sodukuBoard;
-    private javax.swing.JLabel time;
+    private javax.swing.JButton solveButton;
+    private javax.swing.JLabel timeName;
     private javax.swing.JPanel timer;
-    private javax.swing.JButton timerPause;
-    private javax.swing.JButton timerReset;
-    private javax.swing.JButton timerStart;
+    private javax.swing.JButton timerPauseButton;
+    private javax.swing.JButton timerResetButton;
+    private javax.swing.JButton timerStartButton;
+    private javax.swing.JSlider volumeSlider;
     // End of variables declaration//GEN-END:variables
 }
