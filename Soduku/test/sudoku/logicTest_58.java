@@ -19,12 +19,13 @@ public class logicTest_58 {
 
     private static int[][] test1;
     private static logic stuff;
-
     public logicTest_58() {
     }
 
     @BeforeClass
     public static void setUpClass() {
+        stuff = new logic();
+        
         test1 = new int[][]{
             {-1, 3, -1, -1, -1, 7, 8, -1, -1},
             {9, 6, -1, -1, 1, -1, 5, -1, -1},
@@ -35,8 +36,7 @@ public class logicTest_58 {
             {4, 9, -1, -1, -1, 6, -1, -1, -1},
             {-1, -1, 2, -1, 8, -1, -1, 9, 3},
             {-1, -1, 5, 3, -1, -1, -1, -1, -1}};
-
-        stuff = new logic();
+        
 
     }
 

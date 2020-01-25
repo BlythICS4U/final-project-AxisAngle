@@ -20,12 +20,15 @@ public class main  {
      */
     public static void main(String[] args) {
         
+    //    musicPlayer test = new musicPlayer();
+//        test.playMusic("musicTest2.aiff");
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
                 new sudokuWindow().setVisible(true);
             }
-        });
+       });
 
 
     }

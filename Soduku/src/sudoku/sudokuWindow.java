@@ -7,6 +7,7 @@ package sudoku;
 
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 /**
@@ -16,29 +17,35 @@ import javax.swing.SwingUtilities;
 public class sudokuWindow extends javax.swing.JFrame {
 
     private boolean bruh;
-    private boolean[][] isSet;
+    private boolean[][] userInput;
     private static JLabel cellSelected;
     private JLabel[][] cells;
-    private static logic stuff;
+    private static logic logic;
+    private static check check;
+   
 
     /**
      * Creates new form sudokuWindow
      */
     public sudokuWindow() {
-        stuff = new logic();
+       
+        check = new check();
+        logic = new logic();
         initComponents();
-        isSet = new boolean[9][9];
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
-                isSet[i][j] = false;
+        userInput = new boolean[9][9];
+        for(int i = 0; i < 9; i++)
+        {
+            for(int j = 0; j < 9; j++)
+            {
+                userInput[i][j] = true;
             }
         }
-
+        
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 int ii = i;
                 int jj = j;
-             
+
                 //Adds mouse listeners and cellMouseClicked method to all 81 cells
                 cells[i][j].addMouseListener(new java.awt.event.MouseAdapter() {
                     @Override
@@ -46,7 +53,7 @@ public class sudokuWindow extends javax.swing.JFrame {
                         cellMouseClicked(evt, ii, jj);
                     }
                 });
-                
+
                 //Adds mouse wheel listeners and cellMouseWheelMoved method to all 81 cells
                 cells[i][j].addMouseWheelListener(new java.awt.event.MouseAdapter() {
                     @Override
@@ -56,8 +63,7 @@ public class sudokuWindow extends javax.swing.JFrame {
                 });
             }
         }
-        
-        
+
     }
 
     /**
@@ -252,7 +258,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         setButton = new javax.swing.JButton();
         resetButton = new javax.swing.JButton();
         hintButton = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        checkButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         solveButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
@@ -273,6 +279,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         volumeSlider = new javax.swing.JSlider();
         jLabel4 = new javax.swing.JLabel();
         loopCheckBox = new javax.swing.JCheckBox();
+        boardSetText = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sudoku");
@@ -1597,9 +1604,14 @@ public class sudokuWindow extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("Check");
-        jButton3.setToolTipText("Checks sudoku board for any invalid inputs");
-        jButton3.setFocusable(false);
+        checkButton.setText("Check");
+        checkButton.setToolTipText("Checks sudoku board for any invalid inputs");
+        checkButton.setFocusable(false);
+        checkButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkButtonActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Board Settings");
 
@@ -1641,6 +1653,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         jLabel4.setText("Currently Playing:");
 
         loopCheckBox.setText("Loop");
+        loopCheckBox.setFocusable(false);
         loopCheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loopCheckBoxActionPerformed(evt);
@@ -1683,6 +1696,8 @@ public class sudokuWindow extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        boardSetText.setText("Board is not set");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -1690,7 +1705,7 @@ public class sudokuWindow extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(checkButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(hintButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(solveButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
@@ -1713,17 +1728,23 @@ public class sudokuWindow extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(timer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(138, 138, 138))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(boardSetText)
+                .addGap(319, 319, 319))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(41, 41, 41)
+                .addContainerGap()
+                .addComponent(boardSetText)
+                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(sodukuBoard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3)
+                        .addComponent(checkButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(hintButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1752,8 +1773,6 @@ public class sudokuWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
-   
     /**
      *
      * @param evt
@@ -1770,10 +1789,10 @@ public class sudokuWindow extends javax.swing.JFrame {
     private void timerStartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timerStartButtonActionPerformed
         bruh = true;
         int time1 = Integer.parseInt(timeName.getText());
-        while(bruh){
-        
-        timeName.setText(Integer.toString(time1++));
-        
+        while (bruh) {
+
+            timeName.setText(Integer.toString(time1++));
+
         }
     }//GEN-LAST:event_timerStartButtonActionPerformed
 
@@ -1792,7 +1811,7 @@ public class sudokuWindow extends javax.swing.JFrame {
     private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
-                if (isSet[i][j] != true) {
+                if (userInput[i][j]) {
                     cells[i][j].setText(" ");
                 }
 
@@ -1810,18 +1829,28 @@ public class sudokuWindow extends javax.swing.JFrame {
      * @param evt
      */
     private void setButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setButtonActionPerformed
+
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
-                if (!cells[i][j].getText().equals(" ")) {
-                    isSet[i][j] = true;
+                if (cells[i][j].getText().equals(" ")) {
+                    userInput[i][j] = true;
                 }
-
+                else
+                {
+                   userInput[i][j]= false;
+                }
+              
                 if (cells[i][j].getBackground() != new Color(238, 238, 238)) {
                     cellSelected = null;
                     cells[i][j].setBackground(new Color(238, 238, 238));
                 }
+                
             }
         }
+        
+        check.setup(getArray(cells), userInput);
+        logic.setup(getArray(cells));
+        boardSetText.setText("Board has been set");
     }//GEN-LAST:event_setButtonActionPerformed
 
     /**
@@ -1837,15 +1866,15 @@ public class sudokuWindow extends javax.swing.JFrame {
      * @param evt
      */
     private void solveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solveButtonActionPerformed
-        stuff.setup(getArray(cells));
-        String[][] bruhmoment = stuff.solve();
-        
+        logic.setup(getArray(cells));
+        String[][] numbers = logic.solve();
+
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
-                bruhmoment[i][j] = bruhmoment[i][j].replace("[", "");
-                bruhmoment[i][j] = bruhmoment[i][j].replace("]", "");
-                
-                cells[i][j].setText(bruhmoment[i][j]);
+                numbers[i][j] = numbers[i][j].replace("[", "");
+                numbers[i][j] = numbers[i][j].replace("]", "");
+
+                cells[i][j].setText(numbers[i][j]);
             }
         }
     }//GEN-LAST:event_solveButtonActionPerformed
@@ -1869,10 +1898,12 @@ public class sudokuWindow extends javax.swing.JFrame {
      * @param evt
      */
     private void resetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetButtonActionPerformed
+        JOptionPane.showMessageDialog(null, "Are you sure you want to reset?");
+
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 cells[i][j].setText(" ");
-                isSet[i][j] = false;
+                userInput[i][j] = true;
 
                 if (cells[i][j].getBackground() != new Color(238, 238, 238)) {
                     cellSelected = null;
@@ -1881,39 +1912,54 @@ public class sudokuWindow extends javax.swing.JFrame {
                 }
             }
         }
+        boardSetText.setText("Board is not set");
     }//GEN-LAST:event_resetButtonActionPerformed
 
     private void pauseAndPlayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pauseAndPlayButtonActionPerformed
-        if(pauseAndPlayButton.getText().equals("| |"))
-        {
+        if (pauseAndPlayButton.getText().equals("| |")) {
             pauseAndPlayButton.setText("Play");
-        }
-        else
-        {
+        } else {
             pauseAndPlayButton.setText("| |");
         }
     }//GEN-LAST:event_pauseAndPlayButtonActionPerformed
 
     private void musicComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_musicComboBoxActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_musicComboBoxActionPerformed
 
     private void loopCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loopCheckBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_loopCheckBoxActionPerformed
-    
+
+    private void checkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkButtonActionPerformed
+        check.setup(getArray(cells), userInput);
+        boolean[][] wrongNum = check.checkBoard();
+        
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (!wrongNum[i][j]) {
+                    cells[i][j].setBackground(Color.red);
+                }
+                else
+                {
+                    cells[i][j].setBackground(new Color(238, 238, 238));
+                }
+            }
+        }
+    }//GEN-LAST:event_checkButtonActionPerformed
+
     /**
-     *
-     * @param evt
-     * @param cell
-     */
+         *
+         * @param evt
+         * @param cell
+         */
     private void cellMouseWheelMoved(java.awt.event.MouseWheelEvent evt, int i, int j) {
-        if (isSet[i][j] == false) {
+        if (userInput[i][j]) {
             mouseWheelSquare(cells[i][j], evt);
         }
     }
-    
-        /**
+
+    /**
      *
      * @param cell
      * @param event
@@ -1923,7 +1969,7 @@ public class sudokuWindow extends javax.swing.JFrame {
 
         if (cell.getBackground().equals(cellSelectedColor)) {
             String text = cell.getText();
-           
+
             //Scroll up
             if (event.getWheelRotation() >= 0) {
                 if (text.equals(" ")) {
@@ -1946,16 +1992,16 @@ public class sudokuWindow extends javax.swing.JFrame {
                 }
             }
 
-        } 
+        }
     }
-    
+
     /**
      *
      * @param evt
      * @param cell
      */
     private void cellMouseClicked(java.awt.event.MouseEvent evt, int i, int j) {
-        if (isSet[i][j] == false) {
+        if (userInput[i][j]) {
             clickSquare(cells[i][j], evt);
         }
     }
@@ -1970,7 +2016,7 @@ public class sudokuWindow extends javax.swing.JFrame {
 
         if (cell.getBackground().equals(cellSelectedColor)) {
             String text = cell.getText();
-           
+
             //Right Click
             if (SwingUtilities.isRightMouseButton(event)) {
                 if (text.equals(" ")) {
@@ -2015,7 +2061,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         int[][] array = new int[9][9];
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
-                if (cells[i][j].getText().equals(" ")) {
+                if (cells[i][j].getText().equals(" ") || cells[i][j].getText().equals("")) {
                     array[i][j] = -1;
                 } else {
                     array[i][j] = Integer.parseInt(cells[i][j].getText());
@@ -2024,7 +2070,9 @@ public class sudokuWindow extends javax.swing.JFrame {
         }
         return array;
     }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel boardSetText;
     private javax.swing.JLabel cell0_0;
     private javax.swing.JLabel cell0_1;
     private javax.swing.JLabel cell0_2;
@@ -2106,9 +2154,9 @@ public class sudokuWindow extends javax.swing.JFrame {
     private javax.swing.JLabel cell8_6;
     private javax.swing.JLabel cell8_7;
     private javax.swing.JLabel cell8_8;
+    private javax.swing.JButton checkButton;
     private javax.swing.JButton clearButton;
     private javax.swing.JButton hintButton;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

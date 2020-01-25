@@ -59,9 +59,10 @@ public class logic {
         boolean reducedBox1 = true;
         boolean reducedVertical1 = true;
         boolean reducedHorizontal1 = true;
+        int stuff = 0;
         while (reducedBox || reducedVertical || reducedHorizontal || reducedBox1 || reducedVertical1 || reducedHorizontal1) {
 
-            //checkBox
+            //solveBox
             for (int a = 0; a < 3; a++) {
                 for (int b = 0; b < 3; b++) {
                     cell[] box = getBox(a, b);
@@ -71,7 +72,7 @@ public class logic {
                 }
             }
 
-            //checkVertical
+            //solveVertical
             cell[] column = new cell[9];
             for (int i = 0; i < 9; i++) {
                 for (int j = 0; j < 9; j++) {
@@ -81,7 +82,7 @@ public class logic {
                 reducedVertical1 = fixedNumber(column);
             }
 
-            //checkHorizontal
+            //solveHorizontal
             cell[] row = new cell[9];
             for (int i = 0; i < 9; i++) {
                 for (int j = 0; j < 9; j++) {
@@ -90,10 +91,9 @@ public class logic {
                 reducedHorizontal = eliminatePossibleValues(row);
                 reducedHorizontal1 = fixedNumber(row);
             }
-
+            
+            stuff++;
         }
-
-        fixedNumber(getColumn(5));
 
         printPossibleValues();
         printBoard();
