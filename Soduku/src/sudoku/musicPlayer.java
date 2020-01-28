@@ -16,31 +16,73 @@ import javax.swing.JOptionPane;
  * @author bachle
  */
 public class musicPlayer {
-   
-    void playMusic(String fileName)
+    private Clip clip;
+    
+    /**
+     * Plays audio file
+     * @param fileName 
+     */
+    public void playMusic(String fileName)
     {
         try {
             File filePath = new File("music/" + fileName);
             if(filePath.exists())
             {
                 AudioInputStream input = AudioSystem.getAudioInputStream(filePath);
-                Clip clip = AudioSystem.getClip();
+                
+                clip = AudioSystem.getClip();
                 clip.open(input);
-                clip.start();
-                
-                JOptionPane bruh = new JOptionPane();
-                bruh.showMessageDialog(null, "bruhhhh");
-                bruh.setVisible(false);
-                
-            }
+                startMusic();
+               
+                JOptionPane intialize = new JOptionPane();      
+            }  
             
-            else
-            {
-                System.out.println("bruh it doesn't exist");
-            }
-        } catch (Exception ex)
-                {
+                  } catch (Exception ex)
+                
+                  {
                     ex.printStackTrace();
                 }
     }
+   
+    /**
+    * pauses audio
+    */
+    public void pauseMusic()
+    {
+        clip.stop();
+    }
+    
+    /**
+     * starts audio
+     */
+     public void startMusic()
+    {
+        clip.start();
+    }
+     
+     
+     /**
+      * Stops the current audio playing
+      */
+     public void stopMusic()
+     {
+         if(clip != null){
+         clip.close();
+         }
+     }
+     /**
+      * loops audio
+      */
+     public void loopMusic()
+     {
+         clip.loop(Clip.LOOP_CONTINUOUSLY);
+     }
+     
+     /**
+      * Unloops audio
+      */
+     public void unLoopMusic()
+     {
+         clip.loop(0);
+     }
 }

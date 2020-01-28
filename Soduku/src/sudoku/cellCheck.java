@@ -15,14 +15,29 @@ public class cellCheck {
     public boolean userInput;
     public int input;
 
+    /**
+     * Get isCorrect of cellCheck
+     *
+     * @return cellCheck isCorrect
+     */
     public boolean getIsCorrect() {
         return this.isCorrect;
     }
 
+    /**
+     * Get input of cellCheck
+     *
+     * @return cellCheck input
+     */
     public int getInput() {
         return this.input;
     }
-    
+
+    /**
+     * Get userInput of cellCheck
+     *
+     * @return cellCheck userInput
+     */
     public boolean getUserInput() {
         return this.userInput;
     }

@@ -16,8 +16,15 @@ public class check {
 
     private cellCheck[][] cells = new cellCheck[9][9];
 
+    /**
+     * sets up the class
+     *
+     * @param array
+     * @param isUserInput
+     */
     public void setup(int[][] array, boolean[][] isUserInput) {
         for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
                 cells[i][j] = new cellCheck();
 
                 if (array[i][j] == -1) {
@@ -44,20 +51,19 @@ public class check {
     }
 
     /**
+     * finds duplicates
      *
      * @param array
      */
-    public void checkDuplicate(cellCheck[] array) {
+    private void checkDuplicate(cellCheck[] array) {
         Set<Integer> placeholder = new HashSet<>();
 
-        for(int i = 0; i < 9; i++)
-        {
-            if(!array[i].userInput)
-            {
+        for (int i = 0; i < 9; i++) {
+            if (!array[i].userInput) {
                 placeholder.add(array[i].getInput());
             }
         }
-        
+
         for (int i = 0; i < array.length; i++) {
 
             if (array[i].getInput() != -1) {
@@ -72,17 +78,20 @@ public class check {
     }
 
     /**
+     * checks board
      *
      * @return Boolean array
      */
     public boolean[][] checkBoard() {
 
-        //Check Vertical
+       
         for (int i = 0; i < 9; i++) {
+             
+            //Check Vertical
             cellCheck[] vertical = getColumn(i);
             checkDuplicate(vertical);
 
-        //Check Horizontal
+            //Check Horizontal
             cellCheck[] horizontal = getRow(i);
             checkDuplicate(horizontal);
         }
@@ -97,6 +106,7 @@ public class check {
         }
 
         boolean[][] wrongNumbers = new boolean[9][9];
+        
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 wrongNumbers[i][j] = cells[i][j].getIsCorrect();
@@ -107,9 +117,10 @@ public class check {
     }
 
     /**
+     * get column of 2d array of cellCheck
      *
      * @param colNum
-     * @return
+     * @return column of cellCheck
      */
     private cellCheck[] getColumn(int colNum) {
         cellCheck[] col = new cellCheck[9];
@@ -119,32 +130,44 @@ public class check {
         return col;
     }
 
+    /**
+     * get row of 2d array of cellCheck
+     *
+     * @param rowNum
+     * @return row of cellCheck
+     */
     private cellCheck[] getRow(int rowNum) {
         cellCheck[] row = new cellCheck[9];
         for (int i = 0; i < 9; i++) {
-            row[i] = cells[i][rowNum];
+            row[i] = cells[rowNum][i];
         }
         return row;
     }
 
     /**
+     * gets box
      *
-     * @param a
-     * @param b
-     * @return
+     * @param row
+     * @param column
+     * @return return array of the contents of the box
      */
-    private cellCheck[] getBox(int a, int b) {
+    private cellCheck[] getBox(int row, int column) {
         cellCheck[] box = new cellCheck[9];
         int index = 0;
 
-        for (int i = a * 3; i < (a + 1) * 3; i++) {
+        for (int i = row * 3; i < (row + 1) * 3; i++) {
 
-            for (int j = b * 3; j < (b + 1) * 3; j++) {
+            for (int j = column * 3; j < (column + 1) * 3; j++) {
                 box[index] = cells[i][j];
                 index++;
             }
 
         }
         return box;
+    }
+    
+    private cellCheck getCell(int row, int column)
+    {
+        return cells[row][column];
     }
 }

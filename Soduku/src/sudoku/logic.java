@@ -15,16 +15,17 @@ import java.util.Set;
  */
 public class logic {
 
-    private cell[][] cells = new cell[9][9];
+    private cellLogic[][] cells = new cellLogic[9][9];
 
     /**
+     * Sets up the class
      *
      * @param input
      */
     public void setup(int[][] input) {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
-                cells[i][j] = new cell();
+                cells[i][j] = new cellLogic();
                 if (input[i][j] > 0) {
                     cells[i][j].possibleValues.add(input[i][j]);
                     cells[i][j].isInput = true;
@@ -39,18 +40,20 @@ public class logic {
     }
 
     /**
+     * gets the cell
      *
      * @param x
      * @param y
-     * @return
+     * @return cell
      */
-    public cell getCell(int x, int y) {
+    public cellLogic getCell(int x, int y) {
         return this.cells[x][y];
     }
 
     /**
+     * Solves
      *
-     * @return 
+     * @return 2d String array with solution
      */
     public String[][] solve() {
         boolean reducedBox = true;
@@ -59,55 +62,41 @@ public class logic {
         boolean reducedBox1 = true;
         boolean reducedVertical1 = true;
         boolean reducedHorizontal1 = true;
-        int stuff = 0;
+
         while (reducedBox || reducedVertical || reducedHorizontal || reducedBox1 || reducedVertical1 || reducedHorizontal1) {
 
             //solveBox
             for (int a = 0; a < 3; a++) {
                 for (int b = 0; b < 3; b++) {
-                    cell[] box = getBox(a, b);
+                    cellLogic[] box = getBox(a, b);
                     reducedBox = eliminatePossibleValues(box);
                     reducedBox1 = fixedNumber(box);
 
                 }
             }
 
-            //solveVertical
-            cell[] column = new cell[9];
             for (int i = 0; i < 9; i++) {
-                for (int j = 0; j < 9; j++) {
-                    column[j] = cells[i][j];
-                }
+                cellLogic[] column = getColumn(i);
+                cellLogic[] row = getRow(i);
+
+                //solveVertical
                 reducedVertical = eliminatePossibleValues(column);
                 reducedVertical1 = fixedNumber(column);
-            }
 
-            //solveHorizontal
-            cell[] row = new cell[9];
-            for (int i = 0; i < 9; i++) {
-                for (int j = 0; j < 9; j++) {
-                    row[j] = cells[j][i];
-                }
+                //solveHorizontal
                 reducedHorizontal = eliminatePossibleValues(row);
                 reducedHorizontal1 = fixedNumber(row);
             }
-            
-            stuff++;
         }
 
-        printPossibleValues();
-        printBoard();
         String[][] num = new String[9][9];
-        for(int i = 0; i < 9 ; i++)
-        {
-            for(int j = 0; j < 9; j++)
-            {
-                if(cells[i][j].possibleValues.size() == 1)
-                {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (cells[i][j].possibleValues.size() == 1) {
                     num[i][j] = cells[i][j].possibleValues.toString();
-                }
-                else
-                {
+                    num[i][j] = num[i][j].replace("[", "");
+                     num[i][j] = num[i][j].replace("]", "");
+                } else {
                     num[i][j] = " ";
                 }
             }
@@ -116,12 +105,13 @@ public class logic {
     }
 
     /**
+     * get column of 2d array of cellLogic
      *
      * @param colNum
-     * @return
+     * @return column of cellLogic
      */
-    private cell[] getColumn(int colNum) {
-        cell[] col = new cell[9];
+    private cellLogic[] getColumn(int colNum) {
+        cellLogic[] col = new cellLogic[9];
 
         for (int i = 0; i < 9; i++) {
             col[i] = cells[i][colNum];
@@ -129,37 +119,27 @@ public class logic {
         return col;
     }
 
-    public void printPossibleValues() {
+    /**
+     * get row of 2d array of cellLogic
+     *
+     * @param rowNum
+     * @return row of cellLogic
+     */
+    private cellLogic[] getRow(int rowNum) {
+        cellLogic[] row = new cellLogic[9];
         for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
-
-                System.out.println((i + 1) + " " + (j + 1) + " " + cells[i][j].possibleValues);
-            }
-
+            row[i] = cells[rowNum][i];
         }
+        return row;
     }
 
-    public void printBoard() {
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
-
-                if (cells[i][j].possibleValues.size() == 1) {
-                    System.out.print(cells[i][j].getFixedNumber() + " ");
-                } else {
-                    System.out.print("X ");
-                }
-
-            }
-            System.out.println();
-        }
-    }
 
     /**
      *
      * @param array
      * @return
      */
-    private boolean fixedNumber(cell[] array) {
+    private boolean fixedNumber(cellLogic[] array) {
         boolean update = false;
         Set<Integer> numbers = new HashSet<>();
 
@@ -168,24 +148,26 @@ public class logic {
             if (!array[i].isFixed()) {
                 numbers.addAll(array[i].possibleValues);
             }
+            
         }
 
-        Object[] stuff = numbers.toArray();
+        Object[] placeholder = numbers.toArray();
 
-        for (int i = 0; i < stuff.length; i++) {
-            int num = (int) stuff[i];
-            ArrayList<cell> stuff1 = new ArrayList<>();
+        for (int i = 0; i < placeholder.length; i++) {
+            int num = (int) placeholder[i];
+            ArrayList<cellLogic> possibleNum = new ArrayList<>();
 
             for (int j = 0; j < 9; j++) {
                 if (array[j].possibleValues.contains(num)) {
-                    stuff1.add(array[j]);
+                    possibleNum.add(array[j]);
                 }
+                
             }
 
-            if (stuff1.size() == 1) {
+            if (possibleNum.size() == 1) {
                 update = true;
-                stuff1.get(0).possibleValues = new HashSet();
-                stuff1.get(0).possibleValues.add(num);
+                possibleNum.get(0).possibleValues = new HashSet<Integer>();
+                possibleNum.get(0).possibleValues.add(num);
             }
         }
 
@@ -198,8 +180,8 @@ public class logic {
      * @param b
      * @return
      */
-    private cell[] getBox(int a, int b) {
-        cell[] box = new cell[9];
+    private cellLogic[] getBox(int a, int b) {
+        cellLogic[] box = new cellLogic[9];
         int index = 0;
 
         for (int i = a * 3; i < (a + 1) * 3; i++) {
@@ -214,17 +196,17 @@ public class logic {
     }
 
     /**
-     *
+     *Uses method of elimination to eliminate 
      * @param arrayInput
      */
-    private boolean eliminatePossibleValues(cell[] arrayInput) {
+    private boolean eliminatePossibleValues(cellLogic[] arrayInput) {
         ArrayList<Integer> numbers = new ArrayList<>();
         boolean update = false;
 
         for (int i = 0; i < 9; i++) {
 
             if (arrayInput[i].isFixed()) {
-                numbers.add(arrayInput[i].getFixedNumber());
+                numbers.add(arrayInput[i].getFirstNumber());
             }
         }
 

@@ -15,14 +15,15 @@ import java.util.ArrayList;
 public class readFiles {
 
     /**
+     * Reads file
      *
-     * @param filename
-     * @return
+     * @param puzzleName
+     * @return 2D String array of the puzzle
      */
-    public static String[][] readFile(String filename) {
+    public static String[][] readPuzzle(String puzzleName) {
         BufferedReader br = null;
         try {
-            br = new BufferedReader(new FileReader("puzzles/" + filename));
+            br = new BufferedReader(new FileReader("puzzles/" + puzzleName));
             String[][] array = new String[9][9];
             String[] row = new String[9];
             String contentLine;
@@ -56,9 +57,10 @@ public class readFiles {
     }
 
     /**
+     * gets file names
      *
      * @param folderName
-     * @return
+     * @return String array of file names
      */
     public static String[] getFiles(String folderName) {
         ArrayList<String> fileNames = new ArrayList<>();
@@ -81,5 +83,5 @@ public class readFiles {
         }
         return names;
     }
-    
+
 }

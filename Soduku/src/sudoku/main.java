@@ -5,32 +5,22 @@
  */
 package sudoku;
 
-
-
-
-
 /**
  *
  * @author bachle
  */
-public class main  {
-    
+public class main {
+
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
-    //    musicPlayer test = new musicPlayer();
-//        test.playMusic("musicTest2.aiff");
-        
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
                 new sudokuWindow().setVisible(true);
             }
-       });
-
-
+        });
     }
-
 }
