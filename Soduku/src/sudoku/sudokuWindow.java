@@ -1723,6 +1723,7 @@ public class sudokuWindow extends javax.swing.JFrame {
      */
     private void restartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restartButtonActionPerformed
         clearBoard();
+        puzzlesComboBox.setEnabled(true);
     }//GEN-LAST:event_restartButtonActionPerformed
 
     /**
@@ -1887,8 +1888,11 @@ puzzlesComboBox.setEnabled(false);
         enableButtons(false);
 
 
+        puzzlesComboBox.setEnabled(true);
         puzzlesComboBox.setSelectedIndex(0);
+        
         startButton.setText("Start");
+       
         boardSetText.setText("Game has not started");
         boardSetText.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
         boardSetText.setForeground(new Color(0, 0, 0));
