@@ -261,12 +261,6 @@ public class sudokuWindow extends javax.swing.JFrame {
         boardSettings = new javax.swing.JLabel();
         solveButton = new javax.swing.JButton();
         solveSettings = new javax.swing.JLabel();
-        puzzlesComboBox = new javax.swing.JComboBox<>();
-        String[] puzzleNames = sudoku.readFiles.getFiles("puzzles");
-        for(int i = 0; i < puzzleNames.length; i++)
-        {
-            puzzlesComboBox.addItem(puzzleNames[i]);
-        }
         musicPlayerJPanel = new javax.swing.JPanel();
         musicComboBox = new javax.swing.JComboBox<>();
         String[] musicNames = sudoku.readFiles.getFiles("music");
@@ -277,7 +271,15 @@ public class sudokuWindow extends javax.swing.JFrame {
         pauseAndPlayButton = new javax.swing.JButton();
         currentlyPlayingJLabel = new javax.swing.JLabel();
         loopCheckBox = new javax.swing.JCheckBox();
+        jLabel1 = new javax.swing.JLabel();
         boardSetText = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        puzzlesComboBox = new javax.swing.JComboBox<>();
+        String[] puzzleNames = sudoku.readFiles.getFiles("puzzles");
+        for(int i = 0; i < puzzleNames.length; i++)
+        {
+            puzzlesComboBox.addItem(puzzleNames[i]);
+        }
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sudoku");
@@ -1548,6 +1550,7 @@ public class sudokuWindow extends javax.swing.JFrame {
             }
         });
 
+        boardSettings.setFont(new java.awt.Font("Comic Sans MS", 0, 13)); // NOI18N
         boardSettings.setText("Board Settings");
 
         solveButton.setText("Solve");
@@ -1559,15 +1562,10 @@ public class sudokuWindow extends javax.swing.JFrame {
             }
         });
 
+        solveSettings.setFont(new java.awt.Font("Comic Sans MS", 0, 13)); // NOI18N
         solveSettings.setText("Solve Settings");
 
-        puzzlesComboBox.setToolTipText("");
-        puzzlesComboBox.setFocusable(false);
-        puzzlesComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                puzzlesComboBoxActionPerformed(evt);
-            }
-        });
+        musicPlayerJPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         musicComboBox.setFocusable(false);
         musicComboBox.addActionListener(new java.awt.event.ActionListener() {
@@ -1594,6 +1592,8 @@ public class sudokuWindow extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Music Player");
+
         javax.swing.GroupLayout musicPlayerJPanelLayout = new javax.swing.GroupLayout(musicPlayerJPanel);
         musicPlayerJPanel.setLayout(musicPlayerJPanelLayout);
         musicPlayerJPanelLayout.setHorizontalGroup(
@@ -1604,29 +1604,46 @@ public class sudokuWindow extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(currentlyPlayingJLabel))
                     .addGroup(musicPlayerJPanelLayout.createSequentialGroup()
-                        .addComponent(musicComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(musicComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(loopCheckBox)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(pauseAndPlayButton)))
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, musicPlayerJPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(185, 185, 185))
         );
         musicPlayerJPanelLayout.setVerticalGroup(
             musicPlayerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(musicPlayerJPanelLayout.createSequentialGroup()
-                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(musicPlayerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(musicComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(loopCheckBox)
                     .addComponent(pauseAndPlayButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(currentlyPlayingJLabel)
-                .addGap(47, 47, 47))
+                .addGap(0, 0, 0))
         );
 
         boardSetText.setFont(new java.awt.Font("Comic Sans MS", 0, 13)); // NOI18N
         boardSetText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         boardSetText.setText("Game has not started");
+
+        jLabel3.setFont(new java.awt.Font("Comic Sans MS", 0, 13)); // NOI18N
+        jLabel3.setText("Puzzles");
+        jLabel3.setToolTipText("");
+
+        puzzlesComboBox.setToolTipText("");
+        puzzlesComboBox.setFocusable(false);
+        puzzlesComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                puzzlesComboBoxActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1634,70 +1651,72 @@ public class sudokuWindow extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(checkButton, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
+                        .addComponent(hintButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(solveButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(musicPlayerJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(puzzlesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(checkButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(hintButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(solveButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(solveSettings)))
-                        .addGap(0, 0, 0)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(boardSetText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(sodukuBoard, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(solveSettings)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(musicPlayerJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(boardSetText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(sodukuBoard, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(boardSettings)
-                        .addGap(0, 30, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, 0)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(restartButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(startButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(clearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(clearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(puzzlesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel3)))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(boardSetText)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(sodukuBoard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(boardSetText)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(boardSettings)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(startButton)
+                                .addGap(0, 0, 0)
+                                .addComponent(restartButton)
+                                .addGap(0, 0, 0)
+                                .addComponent(clearButton)
+                                .addGap(298, 298, 298)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(puzzlesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(sodukuBoard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(42, 42, 42)
                         .addComponent(solveSettings)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(checkButton)
                         .addGap(0, 0, 0)
                         .addComponent(hintButton)
                         .addGap(0, 0, 0)
-                        .addComponent(solveButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(boardSettings)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(startButton)
-                        .addGap(0, 0, 0)
-                        .addComponent(restartButton)
-                        .addGap(0, 0, 0)
-                        .addComponent(clearButton)))
+                        .addComponent(solveButton)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(puzzlesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(musicPlayerJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(musicPlayerJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private boolean running;
 
     /**
      *
@@ -1749,11 +1768,7 @@ public class sudokuWindow extends javax.swing.JFrame {
             }
         }
 
-        restartButton.setEnabled(true);
-        checkButton.setEnabled(true);
-        solveButton.setEnabled(true);
-        hintButton.setEnabled(true);
-        restartButton.setEnabled(true);
+        enableButtons(true);
 
         check.setup(getArray(cells), userInput);
         logic.setup(getArray(cells));
@@ -1770,6 +1785,11 @@ public class sudokuWindow extends javax.swing.JFrame {
     private void hintButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hintButtonActionPerformed
         logic.setup(getArray(cells));
         String[][] numbers = logic.solve();
+
+        if (hasSolution(numbers, cells)) {
+            JOptionPane.showMessageDialog(null, "No hints available");
+            return;
+        }
 
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
@@ -1804,6 +1824,12 @@ public class sudokuWindow extends javax.swing.JFrame {
         logic.setup(getArray(cells));
         String[][] numbers = logic.solve();
 
+        //Can not find any solution
+        if (hasSolution(numbers, cells)) {
+            JOptionPane.showMessageDialog(null, "Can not solve, current implementation can only use method of elimination");
+            return;
+        }
+
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
 
@@ -1830,9 +1856,13 @@ public class sudokuWindow extends javax.swing.JFrame {
                 }
             }
         }
+
+        enableButtons(false);
+
         boardSetText.setText("Game has not started");
         boardSetText.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
         boardSetText.setForeground(new Color(0, 0, 0));
+        startButton.setText("Start");
 
         String[][] puzzle = new String[9][9];
         puzzle = readFiles.readPuzzle(puzzlesComboBox.getSelectedItem().toString());
@@ -1862,11 +1892,7 @@ public class sudokuWindow extends javax.swing.JFrame {
             }
         }
 
-        restartButton.setEnabled(false);
-        checkButton.setEnabled(false);
-        solveButton.setEnabled(false);
-        hintButton.setEnabled(false);
-        restartButton.setEnabled(false);
+        enableButtons(false);
 
         startButton.setText("Start");
         boardSetText.setText("Game has not started");
@@ -2040,6 +2066,37 @@ public class sudokuWindow extends javax.swing.JFrame {
         return array;
     }
 
+    /**
+     * Enables or disables buttons
+     *
+     * @param a
+     */
+    private void enableButtons(boolean a) {
+        restartButton.setEnabled(a);
+        checkButton.setEnabled(a);
+        solveButton.setEnabled(a);
+        hintButton.setEnabled(a);
+        restartButton.setEnabled(a);
+    }
+
+    /**
+     * Checks if there is a solution or not
+     *
+     * @param array
+     * @return Boolean depending if it is empty or not
+     */
+    private static boolean hasSolution(String[][] array, JLabel[][] cells) {
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[0].length; j++) {
+                if (cells[i][j].getText().equals(" ") && !array[i][j].equals(" ")) {
+                    return false;
+                }
+            }
+
+        }
+        return true;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel boardSetText;
     private javax.swing.JLabel boardSettings;
@@ -2128,6 +2185,8 @@ public class sudokuWindow extends javax.swing.JFrame {
     private javax.swing.JButton clearButton;
     private javax.swing.JLabel currentlyPlayingJLabel;
     private javax.swing.JButton hintButton;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JCheckBox loopCheckBox;
     private javax.swing.JComboBox<String> musicComboBox;
     private javax.swing.JPanel musicPlayerJPanel;
