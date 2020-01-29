@@ -52,7 +52,7 @@ public class check {
 
     /**
      * finds duplicates
-     *
+     *  
      * @param array
      */
     private void checkDuplicate(cellCheck[] array) {
@@ -60,15 +60,15 @@ public class check {
 
         for (int i = 0; i < 9; i++) {
             if (!array[i].userInput) {
-                placeholder.add(array[i].getInput());
+                placeholder.add(array[i].input);
             }
         }
 
         for (int i = 0; i < array.length; i++) {
 
-            if (array[i].getInput() != -1) {
+            if (array[i].input!= -1) {
 
-                if (placeholder.add(array[i].getInput()) == false && array[i].getUserInput()) {
+                if (placeholder.add(array[i].input) == false && array[i].userInput) {
                     array[i].isCorrect = false;
                 }
 
@@ -109,7 +109,7 @@ public class check {
         
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
-                wrongNumbers[i][j] = cells[i][j].getIsCorrect();
+                wrongNumbers[i][j] = cells[i][j].isCorrect;
             }
         }
 

@@ -12,11 +12,10 @@ import java.util.Set;
  *
  * @author bachle
  */
-public class cellLogic {
+public class cellLogic  extends cell{
 
     public Set<Integer> possibleValues;
-    public boolean isInput;
-
+   
     public cellLogic() {
         possibleValues = new HashSet<Integer>();
     }
@@ -37,15 +36,6 @@ public class cellLogic {
      */
     public Set<Integer> getPossibleValues() {
         return this.possibleValues;
-    }
-
-    /**
-     * Get isInput for cellLogic
-     *
-     * @return isInput of cellLogic
-     */
-    public boolean getIsInput() {
-        return this.isInput;
     }
 
     /**

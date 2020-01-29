@@ -2976,7 +2976,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="musicComboBoxActionPerformed"/>
           </Events>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="String[] musicNames = sudoku.readFiles.getFiles(&quot;music&quot;);&#xa;for(int i = 0; i &lt; musicNames.length; i++)&#xa;{&#xa;    musicComboBox.addItem(musicNames[i]);&#xa;}"/>
+            <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="String[] musicNames = sudoku.readFiles.getFiles(&quot;music&quot;);&#xa;musicComboBox.addItem(&quot;None&quot;);&#xa;for(int i = 0; i &lt; musicNames.length; i++)&#xa;{&#xa;    musicComboBox.addItem(musicNames[i]);&#xa;}"/>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
@@ -3040,7 +3040,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="puzzlesComboBoxActionPerformed"/>
       </Events>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="String[] puzzleNames = sudoku.readFiles.getFiles(&quot;puzzles&quot;);&#xa;for(int i = 0; i &lt; puzzleNames.length; i++)&#xa;{&#xa;    puzzlesComboBox.addItem(puzzleNames[i]);&#xa;}"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="String[] puzzleNames = sudoku.readFiles.getFiles(&quot;puzzles&quot;);&#xa;puzzlesComboBox.addItem(&quot;None&quot;);&#xa;for(int i = 0; i &lt; puzzleNames.length; i++)&#xa;{&#xa;    puzzlesComboBox.addItem(puzzleNames[i]);&#xa;}"/>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>

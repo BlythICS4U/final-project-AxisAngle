@@ -28,11 +28,11 @@ public class logic {
                 cells[i][j] = new cellLogic();
                 if (input[i][j] > 0) {
                     cells[i][j].possibleValues.add(input[i][j]);
-                    cells[i][j].isInput = true;
+                    cells[i][j].userInput = true;
                 } else {
                     for (int a = 1; a <= 9; a++) {
                         cells[i][j].possibleValues.add(a);
-                        cells[i][j].isInput = false;
+                        cells[i][j].userInput = false;
                     }
                 }
             }
@@ -42,12 +42,12 @@ public class logic {
     /**
      * gets the cell
      *
-     * @param x
-     * @param y
+     * @param row
+     * @param col
      * @return cell
      */
-    public cellLogic getCell(int x, int y) {
-        return this.cells[x][y];
+    public cellLogic getCell(int row, int col) {
+        return this.cells[row][col];
     }
 
     /**

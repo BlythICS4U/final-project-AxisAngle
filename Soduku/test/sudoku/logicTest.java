@@ -165,8 +165,8 @@ public class logicTest {
     @Test
     public void testSetup() {
         logic.setup(test1);
-        assertFalse(logic.getCell(0, 0).isInput);
-        assertTrue(logic.getCell(0, 3).isInput);
+        assertFalse(logic.getCell(0, 0).userInput);
+        assertTrue(logic.getCell(0, 3).userInput);
     }
 
     @Test

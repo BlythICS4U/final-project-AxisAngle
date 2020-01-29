@@ -9,9 +9,6 @@ package sudoku;
  *
  * @author bachle
  */
-public class cellCheck  extends cell{
-
-    public boolean isCorrect;
-    public int input;
-
+public  abstract class cell {
+    public boolean userInput;
 }

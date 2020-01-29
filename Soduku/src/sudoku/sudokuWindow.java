@@ -65,10 +65,7 @@ public class sudokuWindow extends javax.swing.JFrame {
             }
         }
 
-        restartButton.setEnabled(false);
-        checkButton.setEnabled(false);
-        solveButton.setEnabled(false);
-        hintButton.setEnabled(false);
+       enableButtons(false);
     }
 
     /**
@@ -264,6 +261,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         musicPlayerJPanel = new javax.swing.JPanel();
         musicComboBox = new javax.swing.JComboBox<>();
         String[] musicNames = sudoku.readFiles.getFiles("music");
+        musicComboBox.addItem("None");
         for(int i = 0; i < musicNames.length; i++)
         {
             musicComboBox.addItem(musicNames[i]);
@@ -276,6 +274,7 @@ public class sudokuWindow extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         puzzlesComboBox = new javax.swing.JComboBox<>();
         String[] puzzleNames = sudoku.readFiles.getFiles("puzzles");
+        puzzlesComboBox.addItem("None");
         for(int i = 0; i < puzzleNames.length; i++)
         {
             puzzlesComboBox.addItem(puzzleNames[i]);
@@ -1723,19 +1722,7 @@ public class sudokuWindow extends javax.swing.JFrame {
      * @param evt
      */
     private void restartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restartButtonActionPerformed
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
-                if (userInput[i][j]) {
-                    cells[i][j].setText(" ");
-                }
-
-                if (cells[i][j].getBackground() != new Color(238, 238, 238)) {
-                    cellSelected = null;
-                    cells[i][j].setBackground(new Color(238, 238, 238));
-
-                }
-            }
-        }
+        clearBoard();
     }//GEN-LAST:event_restartButtonActionPerformed
 
     /**
@@ -1769,7 +1756,8 @@ public class sudokuWindow extends javax.swing.JFrame {
         }
 
         enableButtons(true);
-
+puzzlesComboBox.setEnabled(false);
+        
         check.setup(getArray(cells), userInput);
         logic.setup(getArray(cells));
 
@@ -1844,6 +1832,10 @@ public class sudokuWindow extends javax.swing.JFrame {
      */
     private void puzzlesComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_puzzlesComboBoxActionPerformed
 
+        if(puzzlesComboBox.getSelectedItem().toString().equals("None")) {
+            clearBoard();
+    return;
+}
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 cells[i][j].setText(" ");
@@ -1894,6 +1886,8 @@ public class sudokuWindow extends javax.swing.JFrame {
 
         enableButtons(false);
 
+
+        puzzlesComboBox.setSelectedIndex(0);
         startButton.setText("Start");
         boardSetText.setText("Game has not started");
         boardSetText.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
@@ -1912,6 +1906,13 @@ public class sudokuWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_pauseAndPlayButtonActionPerformed
 
     private void musicComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_musicComboBoxActionPerformed
+        if(musicComboBox.getSelectedItem().toString().equals("None"))
+        {
+            musicPlayer.stopMusic();
+            currentlyPlayingJLabel.setText("Currently playing:");
+            return;
+        }
+        
         musicPlayer.stopMusic();
 
         musicPlayer.playMusic(musicComboBox.getSelectedItem().toString());
@@ -2066,6 +2067,26 @@ public class sudokuWindow extends javax.swing.JFrame {
         return array;
     }
 
+    /**
+     * Clears the board
+     */
+    private void clearBoard()
+    {
+       for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (userInput[i][j]) {
+                    cells[i][j].setText(" ");
+                }
+
+                if (cells[i][j].getBackground() != new Color(238, 238, 238)) {
+                    cellSelected = null;
+                    cells[i][j].setBackground(new Color(238, 238, 238));
+
+                }
+            }
+        }   
+    }
+    
     /**
      * Enables or disables buttons
      *
