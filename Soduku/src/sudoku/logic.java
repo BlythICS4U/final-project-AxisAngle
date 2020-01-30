@@ -64,13 +64,22 @@ public class logic {
         boolean reducedHorizontal1 = true;
 
         while (reducedBox || reducedVertical || reducedHorizontal || reducedBox1 || reducedVertical1 || reducedHorizontal1) {
-
+            
+            //reset status
+            reducedBox =false;
+            reducedVertical =false;
+            reducedHorizontal=false;
+            reducedBox1 =false;
+            reducedVertical1 =false;
+            reducedHorizontal1 =false;
+            
+            
             //solveBox
             for (int a = 0; a < 3; a++) {
                 for (int b = 0; b < 3; b++) {
                     cellLogic[] box = getBox(a, b);
-                    reducedBox = eliminatePossibleValues(box);
-                    reducedBox1 = fixedNumber(box);
+                    reducedBox = reducedBox ||  eliminatePossibleValues(box);
+                    reducedBox1 = reducedBox1 ||  fixedNumber(box);
 
                 }
             }
@@ -80,12 +89,12 @@ public class logic {
                 cellLogic[] row = getRow(i);
 
                 //solveVertical
-                reducedVertical = eliminatePossibleValues(column);
-                reducedVertical1 = fixedNumber(column);
+                reducedVertical =reducedVertical|| eliminatePossibleValues(column);
+                reducedVertical1 =reducedVertical1 || fixedNumber(column);
 
                 //solveHorizontal
-                reducedHorizontal = eliminatePossibleValues(row);
-                reducedHorizontal1 = fixedNumber(row);
+                reducedHorizontal =reducedHorizontal || eliminatePossibleValues(row);
+                reducedHorizontal1 =reducedHorizontal1 ||  fixedNumber(row);
             }
         }
 

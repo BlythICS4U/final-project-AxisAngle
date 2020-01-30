@@ -65,7 +65,7 @@ public class sudokuWindow extends javax.swing.JFrame {
             }
         }
 
-       enableButtons(false);
+        enableButtons(false);
     }
 
     /**
@@ -1731,17 +1731,12 @@ public class sudokuWindow extends javax.swing.JFrame {
      * @param evt
      */
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
-                if (!cells[i][j].getText().equals(" ")) {
-                    startButton.setText("Update");
-                }
-            }
-        }
 
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 if (!cells[i][j].getText().equals(" ")) {
+                    startButton.setText("Update");
+
                     userInput[i][j] = false;
                     cells[i][j].setFont(new Font("Lucida Grande", Font.BOLD, 36));
                 } else {
@@ -1757,8 +1752,8 @@ public class sudokuWindow extends javax.swing.JFrame {
         }
 
         enableButtons(true);
-puzzlesComboBox.setEnabled(false);
-        
+        puzzlesComboBox.setEnabled(false);
+
         check.setup(getArray(cells), userInput);
         logic.setup(getArray(cells));
 
@@ -1773,6 +1768,7 @@ puzzlesComboBox.setEnabled(false);
      */
     private void hintButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hintButtonActionPerformed
         logic.setup(getArray(cells));
+
         String[][] numbers = logic.solve();
 
         if (hasSolution(numbers, cells)) {
@@ -1811,7 +1807,28 @@ puzzlesComboBox.setEnabled(false);
         }
 
         logic.setup(getArray(cells));
+
         String[][] numbers = logic.solve();
+        int[][] num = new int[9][9];
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (numbers[i][j].equals(" ")) {
+                    num[i][j] = -1;
+                } else {
+                    num[i][j] = Integer.parseInt(numbers[i][j]);
+                }
+            }
+        }
+        check.setup(num, userInput);
+        boolean[][] placeholder = check.checkBoard();
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (placeholder[i][j] == false) {
+                    JOptionPane.showMessageDialog(null, "Can not solve, incorrect inputs");
+                    return;
+                }
+            }
+        }
 
         //Can not find any solution
         if (hasSolution(numbers, cells)) {
@@ -1833,10 +1850,10 @@ puzzlesComboBox.setEnabled(false);
      */
     private void puzzlesComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_puzzlesComboBoxActionPerformed
 
-        if(puzzlesComboBox.getSelectedItem().toString().equals("None")) {
+        if (puzzlesComboBox.getSelectedItem().toString().equals("None")) {
             clearBoard();
-    return;
-}
+            return;
+        }
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 cells[i][j].setText(" ");
@@ -1887,12 +1904,11 @@ puzzlesComboBox.setEnabled(false);
 
         enableButtons(false);
 
-
         puzzlesComboBox.setEnabled(true);
         puzzlesComboBox.setSelectedIndex(0);
-        
+
         startButton.setText("Start");
-       
+
         boardSetText.setText("Game has not started");
         boardSetText.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
         boardSetText.setForeground(new Color(0, 0, 0));
@@ -1910,13 +1926,12 @@ puzzlesComboBox.setEnabled(false);
     }//GEN-LAST:event_pauseAndPlayButtonActionPerformed
 
     private void musicComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_musicComboBoxActionPerformed
-        if(musicComboBox.getSelectedItem().toString().equals("None"))
-        {
+        if (musicComboBox.getSelectedItem().toString().equals("None")) {
             musicPlayer.stopMusic();
             currentlyPlayingJLabel.setText("Currently playing:");
             return;
         }
-        
+
         musicPlayer.stopMusic();
 
         musicPlayer.playMusic(musicComboBox.getSelectedItem().toString());
@@ -2074,9 +2089,8 @@ puzzlesComboBox.setEnabled(false);
     /**
      * Clears the board
      */
-    private void clearBoard()
-    {
-       for (int i = 0; i < 9; i++) {
+    private void clearBoard() {
+        for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 if (userInput[i][j]) {
                     cells[i][j].setText(" ");
@@ -2088,9 +2102,9 @@ puzzlesComboBox.setEnabled(false);
 
                 }
             }
-        }   
+        }
     }
-    
+
     /**
      * Enables or disables buttons
      *
